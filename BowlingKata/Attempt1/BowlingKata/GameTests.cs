@@ -48,5 +48,13 @@ namespace BowlingKata
             // The game ignores the roll and does not give any score
             Assert.Equal(0, _game.Score());
         }
+
+        [Fact]
+        public void RollingASingleStrike()
+        {
+            _game.Roll(10);
+
+            Assert.Equal(10, _game.Score());
+        }
     }
 }

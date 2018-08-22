@@ -16,7 +16,7 @@ namespace BowlingKata
 
         public void Roll(int numberOfPinsKnockedDown)
         {
-            if (numberOfPinsKnockedDown > 0 && numberOfPinsKnockedDown < 10)
+            if (numberOfPinsKnockedDown > 0 && numberOfPinsKnockedDown <= 10)
             {
                 _score += numberOfPinsKnockedDown;
             }
