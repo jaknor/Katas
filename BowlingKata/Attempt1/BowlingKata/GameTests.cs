@@ -1,26 +1,52 @@
-using System;
 using Xunit;
 
 namespace BowlingKata
 {
     public class GameTests
     {
-        [Fact]
-        public void NewGameInitialised()
-        {
-            var game = new Game();
+        private readonly Game _game;
 
-            Assert.Equal(0, game.Score());
+        public GameTests()
+        {
+            _game = new Game();
         }
 
         [Fact]
-        public void RollAndHitOnePin()
+        public void NewGameInitialised()
         {
-            var game = new Game();
+            Assert.Equal(0, _game.Score());
+        }
 
-            game.Roll(1);
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        [InlineData(9)]
+        public void RollAndHitPins(int numberOfPinsKnockedDown)
+        {
+            _game.Roll(numberOfPinsKnockedDown);
 
-            Assert.Equal(1, game.Score());
+            Assert.Equal(numberOfPinsKnockedDown, _game.Score());
+        }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(11)]
+        [InlineData(-100)]
+        [InlineData(100)]
+        public void RollAndHitInvalidNumberOfPins(int numberOfPinsKnockedDown)
+        {
+            // Given too many pins in a roll
+            _game.Roll(numberOfPinsKnockedDown);
+
+            // The game ignores the roll and does not give any score
+            Assert.Equal(0, _game.Score());
         }
     }
 }
