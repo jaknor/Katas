@@ -25,6 +25,10 @@ namespace BowlingKata
                     {
                         score += _frames[i + 1].Score();
                     }
+                    if (i < _frames.Count - 2)
+                    {
+                        score += _frames[i + 2].Score();
+                    }
                 }
             }
 

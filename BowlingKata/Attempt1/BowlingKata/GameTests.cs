@@ -77,5 +77,17 @@ namespace BowlingKata
 
             Assert.Equal(26, _game.Score());
         }
+
+        [Fact]
+        public void RollingAStrikeFollowedByTwoRegularFrames()
+        {
+            _game.Roll(10);
+            _game.Roll(6);
+            _game.Roll(2);
+            _game.Roll(3);
+            _game.Roll(2);
+
+            Assert.Equal(36, _game.Score());
+        }
     }
 }
