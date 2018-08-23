@@ -87,7 +87,7 @@ namespace BowlingKata
             _game.Roll(3);
             _game.Roll(2);
 
-            Assert.Equal(36, _game.Score());
+            Assert.Equal(31, _game.Score());
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace BowlingKata
             _game.Roll(1);
             _game.Roll(1);
 
-            Assert.Equal(14, _game.Score());
+            Assert.Equal(13, _game.Score());
         }
 
         [Fact]
@@ -120,7 +120,63 @@ namespace BowlingKata
             _game.Roll(1);
             _game.Roll(1);
 
-            Assert.Equal(16, _game.Score());
+            Assert.Equal(15, _game.Score());
+        }
+
+        [Fact]
+        public void GutterGame()
+        {
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            
+
+            Assert.Equal(0, _game.Score());
+        }
+
+        [Fact]
+        public void GameWithNoStrikesOrSpares()
+        {
+            _game.Roll(1);
+            _game.Roll(2);
+            _game.Roll(3);
+            _game.Roll(4);
+            _game.Roll(5);
+            _game.Roll(4);
+            _game.Roll(7);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(0);
+            _game.Roll(4);
+            _game.Roll(4);
+            _game.Roll(3);
+            _game.Roll(3);
+            _game.Roll(2);
+            _game.Roll(1);
+            _game.Roll(5);
+            _game.Roll(2);
+            _game.Roll(1);
+            _game.Roll(0);
+
+
+            Assert.Equal(61, _game.Score());
         }
     }
 }

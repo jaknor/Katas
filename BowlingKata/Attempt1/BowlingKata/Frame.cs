@@ -33,6 +33,11 @@ namespace BowlingKata
             return _firstScore + _secondScore;
         }
 
+        internal int ScoreOfFirstThrow()
+        {
+            return _firstScore;
+        }
+
         public bool WasStrike()
         {
             return _firstScore == 10;
@@ -40,7 +45,7 @@ namespace BowlingKata
 
         public bool WasSpare()
         {
-            return _firstScore + _secondScore == 10;
+            return _firstScore < 10 && _firstScore + _secondScore == 10;
         }
 
         public bool Complete()

@@ -20,27 +20,17 @@ namespace BowlingKata
             {
                 score += _frames[i].Score();
 
-                score += ScoreFromNextFrame(i);
+                score += ScoreForSpare(i);
 
-                score += ScoreFromNextNextFrame(i);
+                score += ScoreForStrike(i);
             }
 
             return score;
         }
 
-        private int ScoreFromNextNextFrame(int i)
+        private int ScoreForStrike(int i)
         {
-            if (AddScoreFromNextNextFrame(i))
-            {
-                return _frames[i + 2].Score();
-            }
-
-            return 0;
-        }
-
-        private int ScoreFromNextFrame(int i)
-        {
-            if (AddScoreFromNextFrame(i))
+            if (_frames[i].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
             {
                 return _frames[i + 1].Score();
             }
@@ -48,14 +38,14 @@ namespace BowlingKata
             return 0;
         }
 
-        private bool AddScoreFromNextNextFrame(int i)
+        private int ScoreForSpare(int i)
         {
-            return _frames[i].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 2);
-        }
+            if (_frames[i].WasSpare() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
+            {
+                return _frames[i + 1].ScoreOfFirstThrow();
+            }
 
-        private bool AddScoreFromNextFrame(int i)
-        {
-            return (_frames[i].WasStrike() || _frames[i].WasSpare()) && ThereAreEnoughFramesLeft(i, _frames.Count, 1);
+            return 0;
         }
 
         private bool ThereAreEnoughFramesLeft(int currentFrameIndex, int nrOfFrames, int nrOfRequiredFrames)
