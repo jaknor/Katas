@@ -2,21 +2,50 @@ namespace BowlingKata
 {
     public class Frame
     {
-        private int _numberOfPinsKnockedDown;
+        private int _firstScore;
+        private int _secondScore;
+        private bool _firstAttempt;
+        private bool _complete;
+
+        public Frame()
+        {
+            _firstAttempt = true;
+        }
 
         public void Score(int numberOfPinsKnockedDown)
         {
-            _numberOfPinsKnockedDown += numberOfPinsKnockedDown;
+            if (_firstAttempt)
+            {
+                _firstScore = numberOfPinsKnockedDown;
+                _firstAttempt = false;
+                _complete = _firstScore == 10;
+            }
+            else
+            {
+                _secondScore = numberOfPinsKnockedDown;
+                _complete = true;
+            }
+
         }
 
         internal int Score()
         {
-            return _numberOfPinsKnockedDown;
+            return _firstScore + _secondScore;
         }
 
         public bool WasStrike()
         {
-            return _numberOfPinsKnockedDown == 10;
+            return _firstScore == 10;
+        }
+
+        public bool WasSpare()
+        {
+            return _firstScore + _secondScore == 10;
+        }
+
+        public bool Complete()
+        {
+            return _complete;
         }
     }
 }

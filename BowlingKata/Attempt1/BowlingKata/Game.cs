@@ -19,15 +19,19 @@ namespace BowlingKata
             for (int i = 0; i < _frames.Count; i++)
             {
                 score += _frames[i].Score();
-                if (_frames[i].WasStrike())
+                if (_frames[i].WasStrike() || _frames[i].WasSpare())
                 {
                     if (i < _frames.Count - 1)
                     {
                         score += _frames[i + 1].Score();
                     }
-                    if (i < _frames.Count - 2)
+
+                    if (_frames[i].WasStrike())
                     {
-                        score += _frames[i + 2].Score();
+                        if (i < _frames.Count - 2)
+                        {
+                            score += _frames[i + 2].Score();
+                        }
                     }
                 }
             }
@@ -41,7 +45,7 @@ namespace BowlingKata
             {
                 _frames.Last().Score(numberOfPinsKnockedDown);
 
-                if (_frames.Last().Score() >= 10)
+                if (_frames.Last().Complete())
                 {
                     _frames.Add(new Frame());
                 }

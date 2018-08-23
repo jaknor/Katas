@@ -89,5 +89,38 @@ namespace BowlingKata
 
             Assert.Equal(36, _game.Score());
         }
+
+        [Fact]
+        public void RollingASingleSpare()
+        {
+            _game.Roll(9);
+            _game.Roll(1);
+
+            Assert.Equal(10, _game.Score());
+        }
+
+        [Fact]
+        public void RollingASingleSpareFollowedByARegularFrame()
+        {
+            _game.Roll(9);
+            _game.Roll(1);
+            _game.Roll(1);
+            _game.Roll(1);
+
+            Assert.Equal(14, _game.Score());
+        }
+
+        [Fact]
+        public void RollingASingleSpareFollowedByTwoRegularFrames()
+        {
+            _game.Roll(9);
+            _game.Roll(1);
+            _game.Roll(1);
+            _game.Roll(1);
+            _game.Roll(1);
+            _game.Roll(1);
+
+            Assert.Equal(16, _game.Score());
+        }
     }
 }
