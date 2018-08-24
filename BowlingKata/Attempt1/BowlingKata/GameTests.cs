@@ -225,5 +225,28 @@ namespace BowlingKata
 
             Assert.Equal(20, _game.Score());
         }
+
+        [Fact]
+        public void GameWithAlternatingStrikesAndSpares()
+        {
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(9);
+            _game.Roll(10);
+
+            Assert.Equal(200, _game.Score());
+        }
     }
 }
