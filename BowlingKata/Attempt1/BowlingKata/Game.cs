@@ -2,7 +2,6 @@ namespace BowlingKata
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
 
     public class Game
     {
@@ -13,56 +12,6 @@ namespace BowlingKata
         {
             _frames = new List<Frame> {new Frame()};
         }
-
-        public int Score()
-        {
-            var score = 0;
-
-            var nrOfFrames = _frames.Count > MaxNrOfFrames ? MaxNrOfFrames : _frames.Count;
-
-            for (int i = 0; i < nrOfFrames; i++)
-            {
-                score += _frames[i].Score();
-
-                score += ScoreForSpare(i);
-
-                score += ScoreForStrike(i);
-            }
-
-            return score;
-        }
-
-        private int ScoreForStrike(int i)
-        {
-            var score = 0;
-
-            if (_frames[i].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
-            {
-                score += _frames[i + 1].Score();
-                if (_frames[i + 1].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 2))
-                {
-                    score += _frames[i + 2].Score();
-                }
-            }
-
-            return score;
-        }
-
-        private int ScoreForSpare(int i)
-        {
-            if (_frames[i].WasSpare() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
-            {
-                return _frames[i + 1].ScoreOfFirstThrow();
-            }
-
-            return 0;
-        }
-
-        private bool ThereAreEnoughFramesLeft(int currentFrameIndex, int nrOfFrames, int nrOfRequiredFrames)
-        {
-            return currentFrameIndex < nrOfFrames - nrOfRequiredFrames;
-        }
-
 
         public void Roll(int numberOfPinsKnockedDown)
         {
@@ -75,6 +24,60 @@ namespace BowlingKata
                     _frames.Add(new Frame());
                 }
             }
+        }
+
+        public int Score()
+        {
+            var score = 0;
+
+            var nrOfFrames = _frames.Count > MaxNrOfFrames ? MaxNrOfFrames : _frames.Count;
+
+            for (int indexOfFrame = 0; indexOfFrame < nrOfFrames; indexOfFrame++)
+            {
+                score += _frames[indexOfFrame].Score();
+
+                score += AdditionalScoreIfStrike(indexOfFrame);
+
+                score += AdditionalScoreIfSpare(indexOfFrame);
+            }
+
+            return score;
+        }
+
+        private int AdditionalScoreIfStrike(int indexOfFrame)
+        {
+            var score = 0;
+
+            if (FrameIsStrike(indexOfFrame))
+            {
+                score += _frames[indexOfFrame + 1].Score();
+                if (FrameIsStrike(indexOfFrame + 1))
+                {
+                    score += _frames[indexOfFrame + 2].Score();
+                }
+            }
+
+            return score;
+        }
+
+        private int AdditionalScoreIfSpare(int i)
+        {
+            if (_frames[i].WasSpare() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
+            {
+                return _frames[i + 1].ScoreOfFirstThrow();
+            }
+
+            return 0;
+        }
+
+        private bool FrameIsStrike(int i)
+        {
+            return _frames[i].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 1);
+        }
+
+        private bool ThereAreEnoughFramesLeft(int currentFrameIndex, int nrOfFrames, int nrOfRequiredFrames)
+        {
+            return currentFrameIndex < nrOfFrames - nrOfRequiredFrames;
         }
     }
 }
