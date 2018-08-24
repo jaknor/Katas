@@ -178,5 +178,24 @@ namespace BowlingKata
 
             Assert.Equal(61, _game.Score());
         }
+
+        [Fact]
+        public void GameWithAllStrikes()
+        {
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(10);
+
+            Assert.Equal(300, _game.Score());
+        }
     }
 }

@@ -2,9 +2,11 @@ namespace BowlingKata
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
 
     public class Game
     {
+        private const int MaxNrOfFrames = 10;
         private readonly List<Frame> _frames;
         
         public Game()
@@ -16,7 +18,9 @@ namespace BowlingKata
         {
             var score = 0;
 
-            for (int i = 0; i < _frames.Count; i++)
+            var nrOfFrames = _frames.Count > MaxNrOfFrames ? MaxNrOfFrames : _frames.Count;
+
+            for (int i = 0; i < nrOfFrames; i++)
             {
                 score += _frames[i].Score();
 
@@ -30,12 +34,18 @@ namespace BowlingKata
 
         private int ScoreForStrike(int i)
         {
+            var score = 0;
+
             if (_frames[i].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 1))
             {
-                return _frames[i + 1].Score();
+                score += _frames[i + 1].Score();
+                if (_frames[i + 1].WasStrike() && ThereAreEnoughFramesLeft(i, _frames.Count, 2))
+                {
+                    score += _frames[i + 2].Score();
+                }
             }
 
-            return 0;
+            return score;
         }
 
         private int ScoreForSpare(int i)
