@@ -197,5 +197,33 @@ namespace BowlingKata
 
             Assert.Equal(300, _game.Score());
         }
+
+        [Fact]
+        public void GutterGameFinishWithSpareFollowedByStrike()
+        {
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(0);
+            _game.Roll(10);
+            _game.Roll(10);
+
+            Assert.Equal(20, _game.Score());
+        }
     }
 }
