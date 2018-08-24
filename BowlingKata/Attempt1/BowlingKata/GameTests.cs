@@ -126,27 +126,7 @@ namespace BowlingKata
         [Fact]
         public void GutterGame()
         {
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            
+            Roll(0, 20);
 
             Assert.Equal(0, _game.Score());
         }
@@ -182,18 +162,7 @@ namespace BowlingKata
         [Fact]
         public void GameWithAllStrikes()
         {
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
-            _game.Roll(10);
+            Roll(10, 12);
 
             Assert.Equal(300, _game.Score());
         }
@@ -201,25 +170,7 @@ namespace BowlingKata
         [Fact]
         public void GutterGameFinishWithSpareFollowedByStrike()
         {
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
-            _game.Roll(0);
+            Roll(0, 19);
             _game.Roll(10);
             _game.Roll(10);
 
@@ -247,6 +198,14 @@ namespace BowlingKata
             _game.Roll(10);
 
             Assert.Equal(200, _game.Score());
+        }
+
+        private void Roll(int value, int nrOfRolls)
+        {
+            for (int i = 0; i < nrOfRolls; i++)
+            {
+                _game.Roll(value);
+            }
         }
     }
 }
