@@ -8,7 +8,7 @@ namespace BowlingKata
         private int _secondScore;
         private bool _isFirstAttempt;
         private bool _complete;
-
+        private Frame _next;
         public Frame()
         {
             _isFirstAttempt = true;

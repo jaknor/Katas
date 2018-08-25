@@ -1,7 +1,7 @@
-using Xunit;
-
 namespace BowlingKata
 {
+    using Xunit;
+
     public class GameTests
     {
         private readonly Game _game;
@@ -15,24 +15,6 @@ namespace BowlingKata
         public void NewGameInitialised()
         {
             Assert.Equal(0, _game.Score());
-        }
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        [InlineData(4)]
-        [InlineData(5)]
-        [InlineData(6)]
-        [InlineData(7)]
-        [InlineData(8)]
-        [InlineData(9)]
-        public void RollAndHitPins(int numberOfPinsKnockedDown)
-        {
-            _game.Roll(numberOfPinsKnockedDown);
-
-            Assert.Equal(numberOfPinsKnockedDown, _game.Score());
         }
 
         [Theory]
