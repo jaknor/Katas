@@ -106,6 +106,17 @@ namespace BowlingKata
         }
 
         [Fact]
+        public void RollingTwoStrikesFollowedByARegularFrame()
+        {
+            _game.Roll(10);
+            _game.Roll(10);
+            _game.Roll(1);
+            _game.Roll(4);
+
+            Assert.Equal(21 + 15 + 5, _game.Score());
+        }
+
+        [Fact]
         public void GutterGame()
         {
             Roll(0, 20);

@@ -42,14 +42,24 @@ namespace BowlingKata
 
             if (FrameIsStrike(indexOfFrame))
             {
-                score += _frames[indexOfFrame + 1].Score();
-                if (FrameIsStrike(indexOfFrame + 1))
+                score += ScoreOfNextFrame(indexOfFrame);
+                if (NextFrameIsStrike(indexOfFrame))
                 {
-                    score += _frames[indexOfFrame + 2].Score();
+                    score += ScoreOfNextNextFrame(indexOfFrame);
                 }
             }
 
             return score;
+        }
+
+        private int ScoreOfNextNextFrame(int indexOfFrame)
+        {
+            return _frames[indexOfFrame + 2].ScoreOfFirstThrow();
+        }
+
+        private int ScoreOfNextFrame(int indexOfFrame)
+        {
+            return _frames[indexOfFrame + 1].Score();
         }
 
         private int AdditionalScoreIfSpare(int i)
@@ -60,6 +70,11 @@ namespace BowlingKata
             }
 
             return 0;
+        }
+
+        private bool NextFrameIsStrike(int i)
+        {
+            return FrameIsStrike(i + 1);
         }
 
         private bool FrameIsStrike(int i)
