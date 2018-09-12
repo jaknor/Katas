@@ -22,17 +22,7 @@ namespace LeapYear
 
         private bool IsLeapYear(int year)
         {
-            if (year == 2016)
-            {
-                return true;
-            }
-
-            if (year == 2020)
-            {
-                return true;
-            }
-
-            if (year == 2024)
+            if (year % 4 == 0)
             {
                 return true;
             }
