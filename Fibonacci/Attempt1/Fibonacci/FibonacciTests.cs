@@ -6,22 +6,13 @@ namespace Fibonacci
 {
     public class FibonacciTests
     {
-        [Fact]
-        public void PositionZero()
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(1, 1)]
+        [InlineData(2, 1)]
+        public void PositionZero(int position, int expectedFibonacci)
         {
-            Assert.Equal(0, Fibonacci(0));
-        }
-
-        [Fact]
-        public void PositionOne()
-        {
-            Assert.Equal(1, Fibonacci(1));
-        }
-
-        [Fact]
-        public void PositionTwo()
-        {
-            Assert.Equal(1, Fibonacci(2));
+            Assert.Equal(expectedFibonacci, Fibonacci(position));
         }
 
         private int Fibonacci(int position)
