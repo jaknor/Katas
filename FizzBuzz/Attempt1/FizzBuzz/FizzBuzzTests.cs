@@ -12,8 +12,19 @@ namespace FizzBuzz
             Assert.Equal(regularNumber.ToString(), FizzBuzz(regularNumber));
         }
 
+        [Fact]
+        public void FizzNumber()
+        {
+            Assert.Equal("Fizz", FizzBuzz(3));
+        }
+
         private string FizzBuzz(int value)
         {
+            if (value == 3)
+            {
+                return "Fizz";
+            }
+
             return value.ToString();
         }
     }
