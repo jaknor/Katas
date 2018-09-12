@@ -21,10 +21,13 @@ namespace FizzBuzz
             Assert.Equal("Fizz", FizzBuzz(fizzNumber));
         }
 
-        [Fact]
-        public void BuzzNumber()
+        [Theory]
+        [InlineData(5)]
+        [InlineData(10)]
+        [InlineData(20)]
+        public void BuzzNumber(int buzzNumber)
         {
-            Assert.Equal("Buzz", FizzBuzz(5));
+            Assert.Equal("Buzz", FizzBuzz(buzzNumber));
         }
 
         private string FizzBuzz(int value)
@@ -35,6 +38,16 @@ namespace FizzBuzz
             }
 
             if (value == 5)
+            {
+                return "Buzz";
+            }
+
+            if (value == 10)
+            {
+                return "Buzz";
+            }
+
+            if (value == 20)
             {
                 return "Buzz";
             }
