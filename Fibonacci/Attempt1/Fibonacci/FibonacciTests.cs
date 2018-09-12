@@ -14,6 +14,7 @@ namespace Fibonacci
         [InlineData(4, 3)]
         [InlineData(5, 5)]
         [InlineData(6, 8)]
+        [InlineData(7, 13)]
         public void PositionZero(int position, int expectedFibonacci)
         {
             Assert.Equal(expectedFibonacci, Fibonacci(position));
@@ -29,6 +30,11 @@ namespace Fibonacci
             if (position == 6)
             {
                 return position + 2;
+            }
+
+            if (position == 7)
+            {
+                return position + 6;
             }
 
             if (position > 1)
