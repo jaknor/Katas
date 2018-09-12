@@ -5,35 +5,20 @@ namespace FizzBuzz
     public class FizzBuzzTests
     {
         [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        public void RegularNumber(int regularNumber)
+        [InlineData(1, "1")]
+        [InlineData(2, "2")]
+        [InlineData(3, "Fizz")]
+        [InlineData(5, "Buzz")]
+        [InlineData(6, "Fizz")]
+        [InlineData(9, "Fizz")]
+        [InlineData(10, "Buzz")]
+        [InlineData(15, "FizzBuzz")]
+        [InlineData(20, "Buzz")]
+        [InlineData(30, "FizzBuzz")]
+        [InlineData(45, "FizzBuzz")]
+        public void Tests(int number, string expectedOutput)
         {
-            Assert.Equal(regularNumber.ToString(), FizzBuzz(regularNumber));
-        }
-
-        [Theory]
-        [InlineData(3)]
-        [InlineData(6)]
-        [InlineData(9)]
-        public void FizzNumber(int fizzNumber)
-        {
-            Assert.Equal("Fizz", FizzBuzz(fizzNumber));
-        }
-
-        [Theory]
-        [InlineData(5)]
-        [InlineData(10)]
-        [InlineData(20)]
-        public void BuzzNumber(int buzzNumber)
-        {
-            Assert.Equal("Buzz", FizzBuzz(buzzNumber));
-        }
-
-        [Fact]
-        public void FizzBuzzNumber()
-        {
-            Assert.Equal("FizzBuzz", FizzBuzz(15));
+            Assert.Equal(expectedOutput, FizzBuzz(number));
         }
 
         private string FizzBuzz(int value)
