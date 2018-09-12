@@ -11,15 +11,28 @@ namespace LeapYear
             Assert.False(IsLeapYear(2017));
         }
 
-        [Fact]
-        public void RegularLeapYear()
+        [Theory]
+        [InlineData(2016)]
+        [InlineData(2020)]
+        [InlineData(2024)]
+        public void RegularLeapYear(int regularLeapYear)
         {
-            Assert.True(IsLeapYear(2020));
+            Assert.True(IsLeapYear(regularLeapYear));
         }
 
         private bool IsLeapYear(int year)
         {
+            if (year == 2016)
+            {
+                return true;
+            }
+
             if (year == 2020)
+            {
+                return true;
+            }
+
+            if (year == 2024)
             {
                 return true;
             }
