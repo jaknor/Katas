@@ -23,24 +23,39 @@ namespace FizzBuzz
 
         private string FizzBuzz(int value)
         {
-            var returnValue = string.Empty;
+            var output = string.Empty;
 
-            if (value % 3 == 0)
+            if (FizzValue(value))
             {
-                returnValue += "Fizz";
+                output += "Fizz";
             }
 
-            if (value % 5 == 0)
+            if (BuzzValue(value))
             {
-                returnValue += "Buzz";
+                output += "Buzz";
             }
 
-            if (string.IsNullOrEmpty(returnValue))
+            if (NotFizzOrBuzzValue(output))
             {
-                return value.ToString();
+                output = value.ToString();
             }
 
-            return returnValue;
+            return output;
+        }
+
+        private static bool FizzValue(int value)
+        {
+            return value % 3 == 0;
+        }
+
+        private static bool BuzzValue(int value)
+        {
+            return value % 5 == 0;
+        }
+
+        private static bool NotFizzOrBuzzValue(string returnValue)
+        {
+            return string.IsNullOrEmpty(returnValue);
         }
     }
 }
