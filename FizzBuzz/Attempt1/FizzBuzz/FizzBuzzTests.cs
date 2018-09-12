@@ -30,19 +30,32 @@ namespace FizzBuzz
             Assert.Equal("Buzz", FizzBuzz(buzzNumber));
         }
 
+        [Fact]
+        public void FizzBuzzNumber()
+        {
+            Assert.Equal("FizzBuzz", FizzBuzz(15));
+        }
+
         private string FizzBuzz(int value)
         {
+            var returnValue = string.Empty;
+
             if (value % 3 == 0)
             {
-                return "Fizz";
+                returnValue += "Fizz";
             }
 
             if (value % 5 == 0)
             {
-                return "Buzz";
+                returnValue += "Buzz";
             }
 
-            return value.ToString();
+            if (string.IsNullOrEmpty(returnValue))
+            {
+                return value.ToString();
+            }
+
+            return returnValue;
         }
     }
 }
