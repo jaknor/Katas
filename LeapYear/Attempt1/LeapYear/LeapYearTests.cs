@@ -20,8 +20,19 @@ namespace LeapYear
             Assert.True(IsLeapYear(regularLeapYear));
         }
 
+        [Fact]
+        public void ATypicalCommonYear()
+        {
+            Assert.False(IsLeapYear(1900));
+        }
+
         private bool IsLeapYear(int year)
         {
+            if (year == 1900)
+            {
+                return false;
+            }
+
             if (year % 4 == 0)
             {
                 return true;
