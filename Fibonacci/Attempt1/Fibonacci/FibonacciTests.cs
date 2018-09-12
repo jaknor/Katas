@@ -12,9 +12,15 @@ namespace Fibonacci
             Assert.Equal(0, Fibonacci(0));
         }
 
+        [Fact]
+        public void PositionOne()
+        {
+            Assert.Equal(1, Fibonacci(1));
+        }
+
         private int Fibonacci(int position)
         {
-            return 0;
+            return position;
         }
     }
 }
