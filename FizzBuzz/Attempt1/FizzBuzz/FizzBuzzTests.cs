@@ -1,5 +1,6 @@
 namespace FizzBuzz
 {
+    using System.Collections.Generic;
     using Xunit;
 
     public class FizzBuzzTests
@@ -16,26 +17,50 @@ namespace FizzBuzz
         [InlineData(20, "Buzz")]
         [InlineData(30, "FizzBuzz")]
         [InlineData(45, "FizzBuzz")]
-        public void Tests(int number, string expectedOutput)
+        public void FizzBuzzTest(int number, string expectedOutput)
         {
-            Assert.Equal(expectedOutput, FizzBuzz(number));
+            var rules = new List<IRule>
+            {
+                new FizzRule(),
+                new BuzzRule()
+            };
+
+            Assert.Equal(expectedOutput, FizzBuzz(number, rules));
         }
 
-        private string FizzBuzz(int value)
+        [Theory]
+        [InlineData(1, "1")]
+        [InlineData(2, "2")]
+        [InlineData(3, "Fizz")]
+        [InlineData(5, "Buzz")]
+        [InlineData(6, "Fizz")]
+        [InlineData(9, "Fizz")]
+        [InlineData(10, "Buzz")]
+        [InlineData(15, "BuzzFizz")]
+        [InlineData(20, "Buzz")]
+        [InlineData(30, "BuzzFizz")]
+        [InlineData(45, "BuzzFizz")]
+        public void BuzzFizzTest(int number, string expectedOutput)
+        {
+            var rules = new List<IRule>
+            {
+                new BuzzRule(),
+                new FizzRule()
+            };
+
+            Assert.Equal(expectedOutput, FizzBuzz(number, rules));
+        }
+
+        private string FizzBuzz(int value, List<IRule> rules)
         {
             var output = string.Empty;
 
-            if (FizzValue(value))
+            foreach (var rule in rules)
             {
-                output += "Fizz";
+                output += rule.Value(value);
             }
 
-            if (BuzzValue(value))
-            {
-                output += "Buzz";
-            }
-
-            if (NotFizzOrBuzzValue(output))
+            if (NotASpecialValue(output))
             {
                 output = value.ToString();
             }
@@ -43,17 +68,7 @@ namespace FizzBuzz
             return output;
         }
 
-        private static bool FizzValue(int value)
-        {
-            return value % 3 == 0;
-        }
-
-        private static bool BuzzValue(int value)
-        {
-            return value % 5 == 0;
-        }
-
-        private static bool NotFizzOrBuzzValue(string returnValue)
+        private static bool NotASpecialValue(string returnValue)
         {
             return string.IsNullOrEmpty(returnValue);
         }
