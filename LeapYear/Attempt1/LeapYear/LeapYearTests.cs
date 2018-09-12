@@ -1,8 +1,7 @@
-using System;
-using Xunit;
-
 namespace LeapYear
 {
+    using Xunit;
+
     public class LeapYearTests
     {
         [Fact]
@@ -40,22 +39,24 @@ namespace LeapYear
 
         private bool IsLeapYear(int year)
         {
-            if (year % 400 == 0)
+            if (year.IsDividableBy(400))
             {
                 return true;
             }
 
-            if (year % 100 == 0)
+            if (year.IsDividableBy(100))
             {
                 return false;
             }
 
-            if (year % 4 == 0)
+            if (year.IsDividableBy(4))
             {
                 return true;
             }
 
             return false;
         }
+
+
     }
 }
