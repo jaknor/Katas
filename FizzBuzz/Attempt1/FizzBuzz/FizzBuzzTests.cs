@@ -4,15 +4,17 @@ namespace FizzBuzz
 
     public class FizzBuzzTests
     {
-        [Fact]
-        public void RegularNumber()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void RegularNumber(int regularNumber)
         {
-            Assert.Equal("1", FizzBuzz(1));
+            Assert.Equal(regularNumber.ToString(), FizzBuzz(regularNumber));
         }
 
         private string FizzBuzz(int value)
         {
-            return "1";
+            return value.ToString();
         }
     }
 }
