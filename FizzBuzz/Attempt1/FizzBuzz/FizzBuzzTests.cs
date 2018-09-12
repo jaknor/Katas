@@ -12,15 +12,28 @@ namespace FizzBuzz
             Assert.Equal(regularNumber.ToString(), FizzBuzz(regularNumber));
         }
 
-        [Fact]
-        public void FizzNumber()
+        [Theory]
+        [InlineData(3)]
+        [InlineData(6)]
+        [InlineData(9)]
+        public void FizzNumber(int fizzNumber)
         {
-            Assert.Equal("Fizz", FizzBuzz(3));
+            Assert.Equal("Fizz", FizzBuzz(fizzNumber));
         }
 
         private string FizzBuzz(int value)
         {
             if (value == 3)
+            {
+                return "Fizz";
+            }
+
+            if (value == 6)
+            {
+                return "Fizz";
+            }
+
+            if (value == 9)
             {
                 return "Fizz";
             }
