@@ -31,17 +31,7 @@ namespace LeapYear
 
         private bool IsLeapYear(int year)
         {
-            if (year == 1000)
-            {
-                return false;
-            }
-
-            if (year == 1800)
-            {
-                return false;
-            }
-
-            if (year == 1900)
+            if (year % 100 == 0)
             {
                 return false;
             }
