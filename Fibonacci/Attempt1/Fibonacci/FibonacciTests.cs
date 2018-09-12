@@ -18,8 +18,19 @@ namespace Fibonacci
             Assert.Equal(1, Fibonacci(1));
         }
 
+        [Fact]
+        public void PositionTwo()
+        {
+            Assert.Equal(1, Fibonacci(2));
+        }
+
         private int Fibonacci(int position)
         {
+            if (position == 2)
+            {
+                return 1;
+            }
+
             return position;
         }
     }
