@@ -22,24 +22,9 @@ namespace Fibonacci
 
         private int Fibonacci(int position)
         {
-            if (position == 5)
-            {
-                return position;
-            }
-
-            if (position == 6)
-            {
-                return position + 2;
-            }
-
-            if (position == 7)
-            {
-                return position + 6;
-            }
-
             if (position > 1)
             {
-                return position - 1;
+                return Fibonacci(position - 1) + Fibonacci(position - 2);
             }
 
             return position;
