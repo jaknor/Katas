@@ -37,17 +37,7 @@ namespace FizzBuzz
                 return "Fizz";
             }
 
-            if (value == 5)
-            {
-                return "Buzz";
-            }
-
-            if (value == 10)
-            {
-                return "Buzz";
-            }
-
-            if (value == 20)
+            if (value % 5 == 0)
             {
                 return "Buzz";
             }
