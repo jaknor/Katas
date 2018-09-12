@@ -21,11 +21,22 @@ namespace FizzBuzz
             Assert.Equal("Fizz", FizzBuzz(fizzNumber));
         }
 
+        [Fact]
+        public void BuzzNumber()
+        {
+            Assert.Equal("Buzz", FizzBuzz(5));
+        }
+
         private string FizzBuzz(int value)
         {
             if (value % 3 == 0)
             {
                 return "Fizz";
+            }
+
+            if (value == 5)
+            {
+                return "Buzz";
             }
 
             return value.ToString();
