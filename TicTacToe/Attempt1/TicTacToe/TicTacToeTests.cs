@@ -46,5 +46,15 @@ namespace TicTacToe
 
             Assert.Equal("XOEEEEEEE", board.ToString());
         }
+
+        [Fact]
+        public void StartWithXInMiddle()
+        {
+            var board = new Board();
+
+            board.Place(new Piece("X"), Position.MiddleMiddle);
+
+            Assert.Equal("EEEEXEEEE", board.ToString());
+        }
     }
 }

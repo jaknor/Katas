@@ -3,6 +3,9 @@ namespace TicTacToe
     public enum Position
     {
         TopLeft,
-        TopMiddle
+        TopMiddle,
+        TopRight,
+        MiddleLeft,
+        MiddleMiddle
     }
 }
