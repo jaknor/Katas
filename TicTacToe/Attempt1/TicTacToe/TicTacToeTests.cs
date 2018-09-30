@@ -1,10 +1,17 @@
-using System;
-using Xunit;
-
 namespace TicTacToe
 {
+    using Xunit;
+
     public class TicTacToeTests
     {
-        
+        [Fact]
+        public void PlaceXInTopLeftCorner()
+        {
+            var board = new Board();
+
+            board.Place(new Piece("X"));
+
+            Assert.Equal(board.ToString(),"XEEEEEEEE");
+        }
     }
 }
