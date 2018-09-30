@@ -13,5 +13,16 @@ namespace TicTacToe
 
             Assert.Equal(board.ToString(),"XEEEEEEEE");
         }
+
+        [Fact]
+        public void CannotPlaceXAfterX()
+        {
+            var board = new Board();
+
+            board.Place(new Piece("X"));
+            board.Place(new Piece("X"));
+
+            Assert.Equal(board.ToString(), "XEEEEEEEE");
+        }
     }
 }
