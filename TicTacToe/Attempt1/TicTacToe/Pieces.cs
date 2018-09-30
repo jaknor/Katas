@@ -11,7 +11,7 @@ namespace TicTacToe
             _placedPieces = new Piece[9];
             for (int index = 0; index < 9; index++)
             {
-                _placedPieces[index] = new Piece("E");
+                _placedPieces[index] = new Piece('E');
             }
         }
 

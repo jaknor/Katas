@@ -14,7 +14,7 @@ namespace TicTacToe
         [Fact]
         public void PlaceXInTopLeftCorner()
         {
-            _board.Place(new Piece("X"), Position.TopLeft);
+            _board.Place(new Piece('X'), Position.TopLeft);
 
             Assert.Equal("XEEEEEEEE", _board.ToString());
         }
@@ -22,8 +22,8 @@ namespace TicTacToe
         [Fact]
         public void CannotPlaceXAfterX()
         {
-            _board.Place(new Piece("X"), Position.TopLeft);
-            _board.Place(new Piece("X"), Position.TopLeft);
+            _board.Place(new Piece('X'), Position.TopLeft);
+            _board.Place(new Piece('X'), Position.TopMiddle);
 
             Assert.Equal("XEEEEEEEE", _board.ToString());
         }
@@ -31,8 +31,8 @@ namespace TicTacToe
         [Fact]
         public void CannotPlacePieceOnTopOfOtherPiece()
         {
-            _board.Place(new Piece("X"), Position.TopLeft);
-            _board.Place(new Piece("O"), Position.TopLeft);
+            _board.Place(new Piece('X'), Position.TopLeft);
+            _board.Place(new Piece('O'), Position.TopLeft);
 
             Assert.Equal("XEEEEEEEE", _board.ToString());
         }
@@ -40,8 +40,8 @@ namespace TicTacToe
         [Fact]
         public void PlaceONextToX()
         {
-            _board.Place(new Piece("X"), Position.TopLeft);
-            _board.Place(new Piece("O"), Position.TopMiddle);
+            _board.Place(new Piece('X'), Position.TopLeft);
+            _board.Place(new Piece('O'), Position.TopMiddle);
 
             Assert.Equal("XOEEEEEEE", _board.ToString());
         }
@@ -49,7 +49,7 @@ namespace TicTacToe
         [Fact]
         public void StartWithXInMiddle()
         {
-            _board.Place(new Piece("X"), Position.MiddleMiddle);
+            _board.Place(new Piece('X'), Position.MiddleMiddle);
 
             Assert.Equal("EEEEXEEEE", _board.ToString());
         }
@@ -57,7 +57,7 @@ namespace TicTacToe
         [Fact]
         public void HaveToStartWithX()
         {
-            _board.Place(new Piece("O"), Position.TopLeft);
+            _board.Place(new Piece('O'), Position.TopLeft);
 
             Assert.Equal("EEEEEEEEE", _board.ToString());
         }
