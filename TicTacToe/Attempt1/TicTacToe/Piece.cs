@@ -8,5 +8,15 @@ namespace TicTacToe
         {
             _type = type;
         }
+
+        public override string ToString()
+        {
+            return _type;
+        }
+
+        public bool IsEmpty()
+        {
+            return _type == "E";
+        }
     }
 }

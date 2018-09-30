@@ -9,9 +9,9 @@ namespace TicTacToe
         {
             var board = new Board();
 
-            board.Place(new Piece("X"));
+            board.Place(new Piece("X"), Position.TopLeft);
 
-            Assert.Equal(board.ToString(),"XEEEEEEEE");
+            Assert.Equal("XEEEEEEEE", board.ToString());
         }
 
         [Fact]
@@ -19,10 +19,10 @@ namespace TicTacToe
         {
             var board = new Board();
 
-            board.Place(new Piece("X"));
-            board.Place(new Piece("X"));
+            board.Place(new Piece("X"), Position.TopLeft);
+            board.Place(new Piece("X"), Position.TopLeft);
 
-            Assert.Equal(board.ToString(), "XEEEEEEEE");
+            Assert.Equal("XEEEEEEEE", board.ToString());
         }
 
         [Fact]
@@ -30,10 +30,21 @@ namespace TicTacToe
         {
             var board = new Board();
 
-            board.Place(new Piece("X"));
-            board.Place(new Piece("O"));
+            board.Place(new Piece("X"), Position.TopLeft);
+            board.Place(new Piece("O"), Position.TopLeft);
 
-            Assert.Equal(board.ToString(), "XEEEEEEEE");
+            Assert.Equal("XEEEEEEEE", board.ToString());
+        }
+
+        [Fact]
+        public void PlaceONextToX()
+        {
+            var board = new Board();
+
+            board.Place(new Piece("X"), Position.TopLeft);
+            board.Place(new Piece("O"), Position.TopMiddle);
+
+            Assert.Equal("XOEEEEEEE", board.ToString());
         }
     }
 }

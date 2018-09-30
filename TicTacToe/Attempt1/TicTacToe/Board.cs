@@ -2,13 +2,21 @@ namespace TicTacToe
 {
     public class Board
     {
-        public override string ToString()
+        private readonly Pieces _pieces;
+
+        public Board()
         {
-            return "XEEEEEEEE";
+            _pieces = new Pieces();
         }
 
-        public void Place(Piece piece)
+        public void Place(Piece piece, Position position)
         {
+            _pieces.PlacePiece(piece, position);
+        }
+
+        public override string ToString()
+        {
+            return _pieces.ToString();
         }
     }
 }
