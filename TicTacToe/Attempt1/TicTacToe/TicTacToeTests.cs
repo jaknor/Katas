@@ -4,57 +4,54 @@ namespace TicTacToe
 
     public class TicTacToeTests
     {
+        private readonly Board _board;
+
+        public TicTacToeTests()
+        {
+            _board = new Board();
+        }
+
         [Fact]
         public void PlaceXInTopLeftCorner()
         {
-            var board = new Board();
+            _board.Place(new Piece("X"), Position.TopLeft);
 
-            board.Place(new Piece("X"), Position.TopLeft);
-
-            Assert.Equal("XEEEEEEEE", board.ToString());
+            Assert.Equal("XEEEEEEEE", _board.ToString());
         }
 
         [Fact]
         public void CannotPlaceXAfterX()
         {
-            var board = new Board();
+            _board.Place(new Piece("X"), Position.TopLeft);
+            _board.Place(new Piece("X"), Position.TopLeft);
 
-            board.Place(new Piece("X"), Position.TopLeft);
-            board.Place(new Piece("X"), Position.TopLeft);
-
-            Assert.Equal("XEEEEEEEE", board.ToString());
+            Assert.Equal("XEEEEEEEE", _board.ToString());
         }
 
         [Fact]
         public void CannotPlacePieceOnTopOfOtherPiece()
         {
-            var board = new Board();
+            _board.Place(new Piece("X"), Position.TopLeft);
+            _board.Place(new Piece("O"), Position.TopLeft);
 
-            board.Place(new Piece("X"), Position.TopLeft);
-            board.Place(new Piece("O"), Position.TopLeft);
-
-            Assert.Equal("XEEEEEEEE", board.ToString());
+            Assert.Equal("XEEEEEEEE", _board.ToString());
         }
 
         [Fact]
         public void PlaceONextToX()
         {
-            var board = new Board();
+            _board.Place(new Piece("X"), Position.TopLeft);
+            _board.Place(new Piece("O"), Position.TopMiddle);
 
-            board.Place(new Piece("X"), Position.TopLeft);
-            board.Place(new Piece("O"), Position.TopMiddle);
-
-            Assert.Equal("XOEEEEEEE", board.ToString());
+            Assert.Equal("XOEEEEEEE", _board.ToString());
         }
 
         [Fact]
         public void StartWithXInMiddle()
         {
-            var board = new Board();
+            _board.Place(new Piece("X"), Position.MiddleMiddle);
 
-            board.Place(new Piece("X"), Position.MiddleMiddle);
-
-            Assert.Equal("EEEEXEEEE", board.ToString());
+            Assert.Equal("EEEEXEEEE", _board.ToString());
         }
     }
 }
