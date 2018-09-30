@@ -18,5 +18,10 @@ namespace TicTacToe
         {
             return _type == "E";
         }
+
+        public bool CannotBeFirstMove()
+        {
+            return _type != "X";
+        }
     }
 }

@@ -53,5 +53,13 @@ namespace TicTacToe
 
             Assert.Equal("EEEEXEEEE", _board.ToString());
         }
+
+        [Fact]
+        public void HaveToStartWithX()
+        {
+            _board.Place(new Piece("O"), Position.TopLeft);
+
+            Assert.Equal("EEEEEEEEE", _board.ToString());
+        }
     }
 }
