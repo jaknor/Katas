@@ -9,23 +9,17 @@ namespace AdventOfCode2018
         private int _frequency;
         private string _input;
 
-        [Fact]
-        public void OnePositiveNumber()
+        [Theory]
+        [InlineData("+1", 1)]
+        [InlineData("+2", 2)]
+        [InlineData("+24", 24)]
+        [InlineData("+561", 561)]
+        public void SinglePositiveNumbers(string input, int expectedFrequency)
         {
             this
-                .Given(_ => GivenInput("+1"))
+                .Given(_ => GivenInput(input))
                 .When(_ => WhenWeCalculateFrequency())
-                .Then(_ => ThenTheCalculatedFrequencyIs(1))
-                .BDDfy();
-        }
-
-        [Fact]
-        public void AnotherPositiveNumber()
-        {
-            this
-                .Given(_ => GivenInput("+2"))
-                .When(_ => WhenWeCalculateFrequency())
-                .Then(_ => ThenTheCalculatedFrequencyIs(2))
+                .Then(_ => ThenTheCalculatedFrequencyIs(expectedFrequency))
                 .BDDfy();
         }
 
