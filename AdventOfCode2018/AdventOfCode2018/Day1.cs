@@ -19,6 +19,16 @@ namespace AdventOfCode2018
                 .BDDfy();
         }
 
+        [Fact]
+        public void AnotherPositiveNumber()
+        {
+            this
+                .Given(_ => GivenInput("+2"))
+                .When(_ => WhenWeCalculateFrequency())
+                .Then(_ => ThenTheCalculatedFrequencyIs(2))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;

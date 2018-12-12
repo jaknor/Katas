@@ -4,7 +4,7 @@ namespace AdventOfCode2018
     {
         public int Calculate(string input)
         {
-            return 1;
+            return int.Parse(input.Substring(1));
         }
     }
 }
