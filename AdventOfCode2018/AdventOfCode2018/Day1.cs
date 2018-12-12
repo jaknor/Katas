@@ -47,6 +47,16 @@ namespace AdventOfCode2018
                 .BDDfy();
         }
 
+        [Fact]
+        public void MultipleNegativeNumbers()
+        {
+            this
+                .Given(_ => GivenInput("-1|-3|-4"))
+                .When(_ => WhenWeCalculateFrequency())
+                .Then(_ => ThenTheCalculatedFrequencyIs(-8))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
