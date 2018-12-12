@@ -1,4 +1,4 @@
-namespace AdventOfCode2018
+namespace AdventOfCode2018.Day1
 {
     internal class FrequencyCalculator
     {
@@ -21,6 +21,11 @@ namespace AdventOfCode2018
             }
 
             return frequency;
+        }
+
+        public int FindFirstFrequencyToBeRepeated(string input)
+        {
+            return 0;
         }
     }
 }

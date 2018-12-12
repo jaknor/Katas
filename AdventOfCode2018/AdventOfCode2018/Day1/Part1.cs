@@ -1,10 +1,10 @@
-namespace AdventOfCode2018
+namespace AdventOfCode2018.Day1
 {
     using Shouldly;
     using TestStack.BDDfy;
     using Xunit;
 
-    public class Day1
+    public class Part1
     {
         private int _frequency;
         private string _input;
