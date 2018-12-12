@@ -23,6 +23,20 @@ namespace AdventOfCode2018
                 .BDDfy();
         }
 
+        [Theory]
+        [InlineData("-1", -1)]
+        [InlineData("-2", -2)]
+        [InlineData("-24", -24)]
+        [InlineData("-561", -561)]
+        public void SingleNegativeNumbers(string input, int expectedFrequency)
+        {
+            this
+                .Given(_ => GivenInput(input))
+                .When(_ => WhenWeCalculateFrequency())
+                .Then(_ => ThenTheCalculatedFrequencyIs(expectedFrequency))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
