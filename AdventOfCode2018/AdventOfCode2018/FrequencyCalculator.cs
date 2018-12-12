@@ -4,14 +4,23 @@ namespace AdventOfCode2018
     {
         public int Calculate(string input)
         {
-            var sign = input.Substring(0, 1);
+            var frequency = 0;
+            var values = input.Split("|");
 
-            if (sign == "+")
+            foreach (var value in values)
             {
-                return int.Parse(input.Substring(1));
+                var sign = value.Substring(0, 1);
+                var frequencyChange = int.Parse(value.Substring(1));
+
+                if (sign == "-")
+                {
+                    frequencyChange = -frequencyChange;
+                }
+
+                frequency += frequencyChange;
             }
 
-            return -int.Parse(input.Substring(1));
+            return frequency;
         }
     }
 }
