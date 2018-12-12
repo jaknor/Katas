@@ -57,6 +57,26 @@ namespace AdventOfCode2018
                 .BDDfy();
         }
 
+        [Fact]
+        public void MultipleMixedValuesWithPositiveResult()
+        {
+            this
+                .Given(_ => GivenInput("+1|-3|-4|+10"))
+                .When(_ => WhenWeCalculateFrequency())
+                .Then(_ => ThenTheCalculatedFrequencyIs(4))
+                .BDDfy();
+        }
+
+        [Fact]
+        public void MultipleMixedValuesWithNegativeResult()
+        {
+            this
+                .Given(_ => GivenInput("-1|+3|+4|-10"))
+                .When(_ => WhenWeCalculateFrequency())
+                .Then(_ => ThenTheCalculatedFrequencyIs(-4))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
