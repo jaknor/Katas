@@ -79,6 +79,16 @@
                 .BDDfy();
         }
 
+        [Fact]
+        public void MultipleLinesFirstWithTwoAndThreeSecondWithTwo()
+        {
+            this
+                .Given(_ => GivenInput("aabbb|cc"))
+                .When(_ => WhenWeCalculateChecksum())
+                .Then(_ => ThenTheChecksumIs(2))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
