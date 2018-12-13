@@ -4,6 +4,11 @@
     {
         public int Calculate(string input)
         {
+            if (input.Length > 1)
+            {
+                return 1;
+            }
+
             return 0;
         }
     }

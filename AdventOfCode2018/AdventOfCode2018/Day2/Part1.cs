@@ -19,6 +19,16 @@
                 .BDDfy();
         }
 
+        [Fact]
+        public void OneLineWithTwoAndThree()
+        {
+            this
+                .Given(_ => GivenInput("aaabb"))
+                .When(_ => WhenWeCalculateChecksum())
+                .Then(_ => ThenTheChecksumIs(1))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
