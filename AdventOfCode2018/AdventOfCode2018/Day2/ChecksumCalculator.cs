@@ -4,12 +4,9 @@
     {
         public int Calculate(string input)
         {
-            if (input.Length > 1)
-            {
-                return 1;
-            }
+            var counts = new CharacterCounter().CountCharacters(input);
 
-            return 0;
+            return counts.twoCount * counts.threeCount;
         }
     }
 }

@@ -29,6 +29,16 @@
                 .BDDfy();
         }
 
+        [Fact]
+        public void OneLineWithTwoAndNoThree()
+        {
+            this
+                .Given(_ => GivenInput("bb"))
+                .When(_ => WhenWeCalculateChecksum())
+                .Then(_ => ThenTheChecksumIs(0))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
