@@ -59,6 +59,26 @@
                 .BDDfy();
         }
 
+        [Fact]
+        public void OneLineWithTwoTwoAndAThree()
+        {
+            this
+                .Given(_ => GivenInput("aabbccc"))
+                .When(_ => WhenWeCalculateChecksum())
+                .Then(_ => ThenTheChecksumIs(1))
+                .BDDfy();
+        }
+
+        [Fact]
+        public void OneLineWithATwoAndTwoThree()
+        {
+            this
+                .Given(_ => GivenInput("aabbbccc"))
+                .When(_ => WhenWeCalculateChecksum())
+                .Then(_ => ThenTheChecksumIs(1))
+                .BDDfy();
+        }
+
         private void GivenInput(string input)
         {
             _input = input;
