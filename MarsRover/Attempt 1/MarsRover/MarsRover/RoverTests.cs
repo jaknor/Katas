@@ -40,6 +40,12 @@ namespace MarsRover
                 new object[] { new RoverState(0, 0, "E"),  new List<string> { "f", "f" }, new RoverState(2, 0, "E")   },
                 // Move forward east 3 steps
                 new object[] { new RoverState(0, 0, "E"),  new List<string> { "f", "f", "f" }, new RoverState(3, 0, "E")   },
+                // Move forward south 1 step
+                new object[] { new RoverState(0, 0, "S"),  new List<string> { "f" }, new RoverState(0, -1, "S")   },
+                // Move forward south 2 steps
+                new object[] { new RoverState(0, 0, "S"),  new List<string> { "f", "f" }, new RoverState(0, -2, "S")   },
+                // Move forward south 3 steps
+                new object[] { new RoverState(0, 0, "S"),  new List<string> { "f", "f", "f" }, new RoverState(0, -3, "S")   },
             };
     }
 }

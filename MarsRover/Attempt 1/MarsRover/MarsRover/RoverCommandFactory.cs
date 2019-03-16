@@ -12,6 +12,10 @@ namespace MarsRover
             {
                 return new ForwardEastCommand(roverState);
             }
+            if (roverState.Direction == "S" && commandString == "f")
+            {
+                return new ForwardSouthCommand(roverState);
+            }
 
             return new NoMoveCommand(roverState);
         }
