@@ -2,16 +2,11 @@ namespace MarsRover
 {
     public class TurnLeftCommand : IRoverCommand
     {
-        private readonly Rover _rover;
-
-        public TurnLeftCommand(Rover rover)
+        public Rover Move(Rover rover, int limit)
         {
-            _rover = rover;
+            return new Rover(rover.X, rover.Y, rover.Direction.Left());
         }
 
-        public Rover Move()
-        {
-            return new Rover(_rover.X, _rover.Y, _rover.Direction.Left());
-        }
+        public string CommandPattern => "l";
     }
 }

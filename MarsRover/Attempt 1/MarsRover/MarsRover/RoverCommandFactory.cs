@@ -1,30 +1,23 @@
 namespace MarsRover
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class RoverCommandFactory
     {
-        public IRoverCommand GetCommand(string commandString, Rover rover, int limit)
+        private readonly List<IRoverCommand> _availableCommands = new List<IRoverCommand>
         {
-            if (commandString == "f")
-            {
-                return new ForwardCommand(rover, limit);
-            }
+            new ForwardCommand(),
+            new BackwardCommand(),
+            new TurnLeftCommand(),
+            new TurnRightCommand(),
+            new NoMoveCommand()
+        };
 
-            if (commandString == "b")
-            {
-                return new BackwardCommand(rover, limit);
-            }
-
-            if (commandString == "r")
-            {
-                return new TurnRightCommand(rover);
-            }
-
-            if (commandString == "l")
-            {
-                return new TurnLeftCommand(rover);
-            }
-
-            return new NoMoveCommand(rover);
+        public IRoverCommand GetCommand(string commandString)
+        {
+            return _availableCommands.First(x =>
+                x.CommandPattern == commandString || string.IsNullOrEmpty(x.CommandPattern));
         }
     }
 }

@@ -2,16 +2,11 @@ namespace MarsRover
 {
     public class TurnRightCommand : IRoverCommand
     {
-        private readonly Rover _rover;
-
-        public TurnRightCommand(Rover rover)
+        public Rover Move(Rover rover, int limit)
         {
-            _rover = rover;
+            return new Rover(rover.X, rover.Y, rover.Direction.Right());
         }
 
-        public Rover Move()
-        {
-            return new Rover(_rover.X, _rover.Y, _rover.Direction.Right());
-        }
+        public string CommandPattern => "r";
     }
 }

@@ -4,7 +4,8 @@ namespace MarsRover
 
     public class RoverCommandCenter
     {
-        private int _limit;
+        private readonly int _limit;
+        private readonly RoverCommandFactory _roverCommandFactory;
 
         public RoverCommandCenter(Rover rover) : this(rover, int.MaxValue) { }
 
@@ -12,16 +13,16 @@ namespace MarsRover
         {
             Rover = rover;
             _limit = limit;
+            _roverCommandFactory = new RoverCommandFactory();
         }
 
         public Rover Rover { get; private set; }
 
         public void Execute(List<string> commands)
         {
-            var roverCommandFactory = new RoverCommandFactory();
             foreach (var commandString in commands)
             {
-                Rover = roverCommandFactory.GetCommand(commandString, Rover, _limit).Move();
+                Rover = _roverCommandFactory.GetCommand(commandString).Move(Rover, _limit);
             }
         }
     }
