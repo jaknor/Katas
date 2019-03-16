@@ -14,5 +14,10 @@ namespace MarsRover
         public int Y { get; private set; }
 
         public string Direction { get; private set; }
+
+        public void Execute(string command)
+        {
+            Y++;
+        }
     }
 }
