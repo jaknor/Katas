@@ -31,7 +31,7 @@ namespace MarsRover
             }
         }
 
-        public Rover(int x, int y, string direction)
+        public Rover(int x, int y, Direction direction)
         {
             X = x;
             Y = y;
@@ -42,16 +42,16 @@ namespace MarsRover
 
         public int Y { get; }
 
-        public string Direction { get; }
+        public Direction Direction { get; }
 
 
-        public bool FacingNorth => Direction == "N";
+        public bool FacingNorth => Equals(Direction, Direction.North);
 
-        public bool FacingSouth => Direction == "S";
+        public bool FacingSouth => Equals(Direction, Direction.South);
 
-        public bool FacingEast => Direction == "E";
+        public bool FacingEast => Equals(Direction, Direction.East);
 
-        public bool FacingWest => Direction == "W";
+        public bool FacingWest => Equals(Direction, Direction.West);
 
 
         public Rover MoveSouth(int limit)

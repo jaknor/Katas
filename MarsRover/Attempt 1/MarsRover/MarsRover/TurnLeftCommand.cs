@@ -14,19 +14,19 @@ namespace MarsRover
             var newDirection = _rover.Direction;
             if (_rover.FacingNorth)
             {
-                newDirection = "W";
+                newDirection = Direction.West;
             }
             else if (_rover.FacingWest)
             {
-                newDirection = "S";
+                newDirection = Direction.South;
             }
             else if (_rover.FacingSouth)
             {
-                newDirection = "E";
+                newDirection = Direction.East;
             }
             else if (_rover.FacingEast)
             {
-                newDirection = "N";
+                newDirection = Direction.North;
             }
 
             return new Rover(_rover.X, _rover.Y, newDirection);
