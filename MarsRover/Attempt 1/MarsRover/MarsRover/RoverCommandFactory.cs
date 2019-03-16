@@ -2,7 +2,7 @@ namespace MarsRover
 {
     public class RoverCommandFactory
     {
-        public IRoverCommand GetCommand(string commandString, RoverState roverState)
+        public IRoverCommand GetCommand(string commandString, Rover roverState)
         {
             if (commandString == "f")
             {

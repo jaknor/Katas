@@ -1,23 +1,47 @@
 namespace MarsRover
 {
-    using System.Collections.Generic;
-
     public class Rover
     {
-        public Rover(RoverState roverState)
+        public override string ToString()
         {
-            RoverState = roverState;
+            return $"X: {X}, Y: {Y}, Direction: {Direction}";
         }
 
-        public RoverState RoverState { get; private set; }
-
-        public void Execute(List<string> commands)
+        protected bool Equals(Rover other)
         {
-            var roverCommandFactory = new RoverCommandFactory();
-            foreach (var commandString in commands)
+            return X == other.X && Y == other.Y && string.Equals(Direction, other.Direction);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Rover) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
             {
-                RoverState = roverCommandFactory.GetCommand(commandString, RoverState).Move();
+                var hashCode = X;
+                hashCode = (hashCode * 397) ^ Y;
+                hashCode = (hashCode * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
+                return hashCode;
             }
         }
+
+        public Rover(int x, int y, string direction)
+        {
+            X = x;
+            Y = y;
+            Direction = direction;
+        }
+
+        public int X { get; }
+
+        public int Y { get; }
+
+        public string Direction { get; }
     }
 }

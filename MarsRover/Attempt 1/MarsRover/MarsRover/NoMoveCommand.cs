@@ -2,14 +2,14 @@ namespace MarsRover
 {
     public class NoMoveCommand : IRoverCommand
     {
-        private readonly RoverState _state;
+        private readonly Rover _state;
 
-        public NoMoveCommand(RoverState state)
+        public NoMoveCommand(Rover state)
         {
             _state = state;
         }
 
-        public RoverState Move()
+        public Rover Move()
         {
             return _state;
         }
