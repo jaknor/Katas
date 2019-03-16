@@ -4,21 +4,14 @@ namespace MarsRover
     {
         public IRoverCommand Build(string commandString, RoverState roverState)
         {
-            if (roverState.Direction == "N" && commandString == "f")
+            if (commandString == "f")
             {
-                return new ForwardNorthCommand(roverState);
+                return new ForwardCommand(roverState);
             }
-            if (roverState.Direction == "E" && commandString == "f")
+
+            if (commandString == "r")
             {
-                return new ForwardEastCommand(roverState);
-            }
-            if (roverState.Direction == "S" && commandString == "f")
-            {
-                return new ForwardSouthCommand(roverState);
-            }
-            if (roverState.Direction == "W" && commandString == "f")
-            {
-                return new ForwardWestCommand(roverState);
+                return new TurnRightCommand(roverState);
             }
 
             return new NoMoveCommand(roverState);
