@@ -58,6 +58,39 @@ namespace MarsRover
             commandCenter.Rover.ShouldBe(expected);
         }
 
+        [Theory]
+        [MemberData(nameof(WrapData), parameters: 10)]
+        public void MovingWhenAtTheEdgeShouldWrap(Rover initial, List<string> commands, Rover expected)
+        {
+            var commandCenter = new RoverCommandCenter(initial, 10);
+
+            commandCenter.Execute(commands);
+
+            commandCenter.Rover.ShouldBe(expected);
+        }
+
+        public static IEnumerable<object[]> WrapData(int limit) =>
+            new List<object[]>
+            {
+                // Move forward 1 step when facing north and at the top edge
+                new object[] { new Rover(0, limit, "N"), new List<string> {"f"}, new Rover(0, -limit, "N")},
+                // Move forward 1 step when facing south and at the bottom edge
+                new object[] { new Rover(0, -limit, "S"), new List<string> {"f"}, new Rover(0, limit, "S")},
+                // Move backwards 1 step when facing north and at the bottom edge
+                new object[] { new Rover(0, -limit, "N"), new List<string> {"b"}, new Rover(0, limit, "N")},
+                // Move backwards 1 step when facing south and at the top edge
+                new object[] { new Rover(0, limit, "S"), new List<string> {"b"}, new Rover(0, -limit, "S")},
+
+                // Move forward 1 step when facing east and at the right edge
+                new object[] { new Rover(limit, 0, "E"), new List<string> {"f"}, new Rover(-limit, 0, "E")},
+                // Move forward 1 step when facing west and at the left edge
+                new object[] { new Rover(-limit, 0, "W"), new List<string> {"f"}, new Rover(limit, 0, "W")},
+                // Move backwards 1 step when facing east and at the left edge
+                new object[] { new Rover(-limit, 0, "E"), new List<string> {"b"}, new Rover(limit, 0, "E")},
+                // Move backwards 1 step when facing west and at the right edge
+                new object[] { new Rover(limit, 0, "W"), new List<string> {"b"}, new Rover(-limit, 0, "W")},
+            };
+
         public static IEnumerable<object[]> CanTurnRightData =>
             new List<object[]>
             {
