@@ -12,19 +12,19 @@ namespace MarsRover
         public Rover Move()
         {
             var newDirection = _rover.Direction;
-            if (_rover.Direction == "N")
+            if (_rover.FacingNorth)
             {
                 newDirection = "W";
             }
-            else if (_rover.Direction == "W")
+            else if (_rover.FacingWest)
             {
                 newDirection = "S";
             }
-            else if (_rover.Direction == "S")
+            else if (_rover.FacingSouth)
             {
                 newDirection = "E";
             }
-            else if (_rover.Direction == "E")
+            else if (_rover.FacingEast)
             {
                 newDirection = "N";
             }

@@ -43,5 +43,59 @@ namespace MarsRover
         public int Y { get; }
 
         public string Direction { get; }
+
+
+        public bool FacingNorth => Direction == "N";
+
+        public bool FacingSouth => Direction == "S";
+
+        public bool FacingEast => Direction == "E";
+
+        public bool FacingWest => Direction == "W";
+
+
+        public Rover MoveSouth(int limit)
+        {
+            var currentY = Y;
+            if (currentY == -limit)
+            {
+                currentY = limit + 1;
+            };
+
+            return new Rover(X, currentY - 1, Direction);
+        }
+
+        public Rover MoveWest(int limit)
+        {
+            var currentX = X;
+            if (currentX == -limit)
+            {
+                currentX = (limit + 1);
+            }
+
+            return new Rover(currentX - 1, Y, Direction);
+        }
+
+        public Rover MoveNorth(int limit)
+        {
+            var currentY = Y;
+            if (currentY == limit)
+            {
+                currentY = -(limit + 1);
+            }
+
+            return new Rover(X, currentY + 1, Direction);
+        }
+
+        public Rover MoveEast(int limit)
+        {
+            var currentX = X;
+            if (currentX == limit)
+            {
+                currentX = -(limit + 1);
+            }
+
+            return new Rover(currentX + 1, Y, Direction);
+        }
     }
 }

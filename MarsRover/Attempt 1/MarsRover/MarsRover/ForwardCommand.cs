@@ -1,6 +1,6 @@
 namespace MarsRover
 {
-    public class ForwardCommand : MoveCommand, IRoverCommand
+    public class ForwardCommand : IRoverCommand
     {
         private readonly Rover _rover;
         private readonly int _limit;
@@ -13,24 +13,24 @@ namespace MarsRover
 
         public Rover Move()
         {
-            if (_rover.Direction == "N")
+            if (_rover.FacingNorth)
             {
-                return new Rover(_rover.X, MoveNorth(_rover, _limit), _rover.Direction);
+                return _rover.MoveNorth(_limit);
             }
-            else if (_rover.Direction == "E")
+            else if (_rover.FacingEast)
             {
-                return new Rover(MoveEast(_rover, _limit), _rover.Y, _rover.Direction);
+                return _rover.MoveEast(_limit);
             }
-            else if (_rover.Direction == "S")
+            else if (_rover.FacingSouth)
             {
-                return new Rover(_rover.X, MoveSouth(_rover, _limit), _rover.Direction);
+                return _rover.MoveSouth(_limit);
             }
-            else if (_rover.Direction == "W")
+            else if (_rover.FacingWest)
             {
-                return new Rover(MoveWest(_rover, _limit), _rover.Y, _rover.Direction);
+                return _rover.MoveWest(_limit);
             }
 
-            return new Rover(_rover.X, _rover.Y, _rover.Direction);
+            return _rover;
         }
     }
 }
