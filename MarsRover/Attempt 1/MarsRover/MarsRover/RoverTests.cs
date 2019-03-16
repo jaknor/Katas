@@ -36,6 +36,17 @@ namespace MarsRover
             rover.RoverState.ShouldBe(expected);
         }
 
+        [Theory]
+        [MemberData(nameof(CanTurnLeftData))]
+        public void MarsRoverCanTurnLeft(RoverState initial, List<string> commands, RoverState expected)
+        {
+            var rover = new Rover(initial);
+
+            rover.Execute(commands);
+
+            rover.RoverState.ShouldBe(expected);
+        }
+
         public static IEnumerable<object[]> CanTurnRightData =>
             new List<object[]>
             {
@@ -49,6 +60,20 @@ namespace MarsRover
                 new object[] {RoverInMiddleFacing("N"), new List<string> {"r", "r", "r", "r" }, RoverInMiddleFacing("N")},
                 // Facing north turn right 5 steps
                 new object[] {RoverInMiddleFacing("N"), new List<string> {"r", "r", "r", "r", "r" }, RoverInMiddleFacing("E")},
+            };
+
+        public static IEnumerable<object[]> CanTurnLeftData =>
+            new List<object[]>
+            {
+                // Facing north turn right 1 step
+                new object[] {RoverInMiddleFacing("N"), new List<string> {"l"}, RoverInMiddleFacing("W")},
+                // Facing north turn right 2 steps
+                new object[] {RoverInMiddleFacing("N"), new List<string> {"l", "l"}, RoverInMiddleFacing("S")},
+                // Facing north turn right 3 steps
+                new object[] {RoverInMiddleFacing("N"), new List<string> {"l", "l", "l"}, RoverInMiddleFacing("E")},
+                new object[] {RoverInMiddleFacing("N"), new List<string> {"l", "l", "l", "l" }, RoverInMiddleFacing("N")},
+                // Facing north turn right 5 steps
+                new object[] {RoverInMiddleFacing("N"), new List<string> {"l", "l", "l", "l", "l" }, RoverInMiddleFacing("W")},
             };
 
         public static IEnumerable<object[]> CanMoveForwardData =>
