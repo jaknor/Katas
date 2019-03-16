@@ -44,16 +44,6 @@ namespace MarsRover
 
         public Direction Direction { get; }
 
-
-        public bool FacingNorth => Equals(Direction, Direction.North);
-
-        public bool FacingSouth => Equals(Direction, Direction.South);
-
-        public bool FacingEast => Equals(Direction, Direction.East);
-
-        public bool FacingWest => Equals(Direction, Direction.West);
-
-
         public Rover MoveSouth(int limit)
         {
             var currentY = Y;

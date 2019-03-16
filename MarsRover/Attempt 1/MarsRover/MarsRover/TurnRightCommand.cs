@@ -11,25 +11,7 @@ namespace MarsRover
 
         public Rover Move()
         {
-            var newDirection = _rover.Direction;
-            if (_rover.FacingNorth)
-            {
-                newDirection = Direction.East;
-            }
-            else if (_rover.FacingEast)
-            {
-                newDirection = Direction.South;
-            }
-            else if (_rover.FacingSouth)
-            {
-                newDirection = Direction.West;
-            }
-            else if (_rover.FacingWest)
-            {
-                newDirection = Direction.North;
-            }
-
-            return new Rover(_rover.X, _rover.Y, newDirection);
+            return new Rover(_rover.X, _rover.Y, _rover.Direction.Right());
         }
     }
 }

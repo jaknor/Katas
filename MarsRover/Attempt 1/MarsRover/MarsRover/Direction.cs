@@ -17,6 +17,58 @@ namespace MarsRover
             _direction = direction;
         }
 
+        public bool FacingNorth => _direction == "N";
+
+        public bool FacingSouth => _direction == "S";
+
+        public bool FacingEast => _direction == "E";
+
+        public bool FacingWest => _direction == "W";
+
+        public Direction Left()
+        {
+            if (FacingNorth)
+            {
+                return West;
+            }
+            else if (FacingWest)
+            {
+                return South;
+            }
+            else if (FacingSouth)
+            {
+                return East;
+            }
+            else if (FacingEast)
+            {
+                return North;
+            }
+
+            return this;
+        }
+
+        public Direction Right()
+        {
+            if (FacingNorth)
+            {
+                return East;
+            }
+            else if (FacingWest)
+            {
+                return North;
+            }
+            else if (FacingSouth)
+            {
+                return West;
+            }
+            else if (FacingEast)
+            {
+                return South;
+            }
+
+            return this;
+        }
+
         protected bool Equals(Direction other)
         {
             return string.Equals(_direction, other._direction);

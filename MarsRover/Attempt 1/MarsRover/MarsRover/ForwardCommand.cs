@@ -13,19 +13,19 @@ namespace MarsRover
 
         public Rover Move()
         {
-            if (_rover.FacingNorth)
+            if (_rover.Direction.FacingNorth)
             {
                 return _rover.MoveNorth(_limit);
             }
-            else if (_rover.FacingEast)
+            else if (_rover.Direction.FacingEast)
             {
                 return _rover.MoveEast(_limit);
             }
-            else if (_rover.FacingSouth)
+            else if (_rover.Direction.FacingSouth)
             {
                 return _rover.MoveSouth(_limit);
             }
-            else if (_rover.FacingWest)
+            else if (_rover.Direction.FacingWest)
             {
                 return _rover.MoveWest(_limit);
             }
