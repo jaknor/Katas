@@ -2,29 +2,29 @@ namespace MarsRover
 {
     public class RoverCommandFactory
     {
-        public IRoverCommand GetCommand(string commandString, Rover roverState, int limit)
+        public IRoverCommand GetCommand(string commandString, Rover rover, int limit)
         {
             if (commandString == "f")
             {
-                return new ForwardCommand(roverState, limit);
+                return new ForwardCommand(rover, limit);
             }
 
             if (commandString == "b")
             {
-                return new BackwardCommand(roverState, limit);
+                return new BackwardCommand(rover, limit);
             }
 
             if (commandString == "r")
             {
-                return new TurnRightCommand(roverState);
+                return new TurnRightCommand(rover);
             }
 
             if (commandString == "l")
             {
-                return new TurnLeftCommand(roverState);
+                return new TurnLeftCommand(rover);
             }
 
-            return new NoMoveCommand(roverState);
+            return new NoMoveCommand(rover);
         }
     }
 }

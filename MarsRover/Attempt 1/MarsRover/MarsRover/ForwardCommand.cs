@@ -2,35 +2,35 @@ namespace MarsRover
 {
     public class ForwardCommand : MoveCommand, IRoverCommand
     {
-        private readonly Rover _roverState;
+        private readonly Rover _rover;
         private readonly int _limit;
 
-        public ForwardCommand(Rover roverState, int limit)
+        public ForwardCommand(Rover rover, int limit)
         {
-            _roverState = roverState;
+            _rover = rover;
             _limit = limit;
         }
 
         public Rover Move()
         {
-            if (_roverState.Direction == "N")
+            if (_rover.Direction == "N")
             {
-                return new Rover(_roverState.X, MoveNorth(_roverState, _limit), _roverState.Direction);
+                return new Rover(_rover.X, MoveNorth(_rover, _limit), _rover.Direction);
             }
-            else if (_roverState.Direction == "E")
+            else if (_rover.Direction == "E")
             {
-                return new Rover(MoveEast(_roverState, _limit), _roverState.Y, _roverState.Direction);
+                return new Rover(MoveEast(_rover, _limit), _rover.Y, _rover.Direction);
             }
-            else if (_roverState.Direction == "S")
+            else if (_rover.Direction == "S")
             {
-                return new Rover(_roverState.X, MoveSouth(_roverState, _limit), _roverState.Direction);
+                return new Rover(_rover.X, MoveSouth(_rover, _limit), _rover.Direction);
             }
-            else if (_roverState.Direction == "W")
+            else if (_rover.Direction == "W")
             {
-                return new Rover(MoveWest(_roverState, _limit), _roverState.Y, _roverState.Direction);
+                return new Rover(MoveWest(_rover, _limit), _rover.Y, _rover.Direction);
             }
 
-            return new Rover(_roverState.X, _roverState.Y, _roverState.Direction);
+            return new Rover(_rover.X, _rover.Y, _rover.Direction);
         }
     }
 }

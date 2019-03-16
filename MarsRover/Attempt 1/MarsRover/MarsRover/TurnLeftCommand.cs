@@ -2,34 +2,34 @@ namespace MarsRover
 {
     public class TurnLeftCommand : IRoverCommand
     {
-        private readonly Rover _roverState;
+        private readonly Rover _rover;
 
-        public TurnLeftCommand(Rover roverState)
+        public TurnLeftCommand(Rover rover)
         {
-            _roverState = roverState;
+            _rover = rover;
         }
 
         public Rover Move()
         {
-            var newDirection = _roverState.Direction;
-            if (_roverState.Direction == "N")
+            var newDirection = _rover.Direction;
+            if (_rover.Direction == "N")
             {
                 newDirection = "W";
             }
-            else if (_roverState.Direction == "W")
+            else if (_rover.Direction == "W")
             {
                 newDirection = "S";
             }
-            else if (_roverState.Direction == "S")
+            else if (_rover.Direction == "S")
             {
                 newDirection = "E";
             }
-            else if (_roverState.Direction == "E")
+            else if (_rover.Direction == "E")
             {
                 newDirection = "N";
             }
 
-            return new Rover(_roverState.X, _roverState.Y, newDirection);
+            return new Rover(_rover.X, _rover.Y, newDirection);
         }
     }
 }
