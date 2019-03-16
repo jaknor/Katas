@@ -46,6 +46,12 @@ namespace MarsRover
                 new object[] { RoverInMiddleFacing( "S"),  new List<string> { "f", "f" }, new RoverState(0, -2, "S")   },
                 // Move forward south 3 steps
                 new object[] { RoverInMiddleFacing( "S"),  new List<string> { "f", "f", "f" }, new RoverState(0, -3, "S")   },
+                // Move forward west 1 step
+                new object[] { RoverInMiddleFacing( "W"),  new List<string> { "f" }, new RoverState(-1, 0, "W")   },
+                // Move forward west 2 steps
+                new object[] { RoverInMiddleFacing( "W"),  new List<string> { "f", "f" }, new RoverState(-2, 0, "W")   },
+                // Move forward west 3 steps
+                new object[] { RoverInMiddleFacing( "W"),  new List<string> { "f", "f", "f" }, new RoverState(-3, 0, "W")   },
             };
 
         private static RoverState RoverInMiddleFacing(string direction)
