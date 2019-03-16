@@ -69,6 +69,11 @@ namespace MarsRover
             return this;
         }
 
+        public override string ToString()
+        {
+            return _direction;
+        }
+
         protected bool Equals(Direction other)
         {
             return string.Equals(_direction, other._direction);
