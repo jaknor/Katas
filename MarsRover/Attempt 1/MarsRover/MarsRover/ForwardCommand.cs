@@ -1,6 +1,6 @@
 namespace MarsRover
 {
-    public class ForwardCommand : IRoverCommand
+    public class ForwardCommand : MoveCommand, IRoverCommand
     {
         private readonly Rover _roverState;
         private readonly int _limit;
@@ -31,50 +31,6 @@ namespace MarsRover
             }
 
             return new Rover(_roverState.X, _roverState.Y, _roverState.Direction);
-        }
-
-        private int MoveNorth(Rover rover, int limit)
-        {
-            var currentY = rover.Y;
-            if (currentY == limit)
-            {
-                currentY = -(limit + 1);
-            }
-
-            return currentY + 1;
-        }
-
-        private int MoveEast(Rover rover, int limit)
-        {
-            var currentX = rover.X;
-            if (currentX == limit)
-            {
-                currentX = -(limit + 1);
-            }
-
-            return currentX + 1;
-        }
-
-        private int MoveSouth(Rover rover, int limit)
-        {
-            var currentY = rover.Y;
-            if (currentY == -limit)
-            {
-                currentY = limit + 1;
-            }
-
-            return currentY - 1;
-        }
-
-        private int MoveWest(Rover rover, int limit)
-        {
-            var currentX = rover.X;
-            if (currentX == -limit)
-            {
-                currentX = (limit + 1);
-            }
-
-            return currentX - 1;
         }
     }
 }
