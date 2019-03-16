@@ -2,6 +2,11 @@ namespace MarsRover
 {
     public class RoverState
     {
+        public override string ToString()
+        {
+            return $"X: {X}, Y: {Y}, Direction: {Direction}";
+        }
+
         protected bool Equals(RoverState other)
         {
             return X == other.X && Y == other.Y && string.Equals(Direction, other.Direction);
