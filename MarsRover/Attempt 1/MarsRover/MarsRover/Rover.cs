@@ -2,14 +2,24 @@ namespace MarsRover
 {
     public class Rover
     {
+        public Rover(Position position, Direction direction)
+        {
+            Position = position;
+            Direction = direction;
+        }
+
+        public Position Position { get; }
+
+        public Direction Direction { get; }
+
         public override string ToString()
         {
-            return $"X: {X}, Y: {Y}, Direction: {Direction}";
+            return $"X: {Position.X}, Y: {Position.Y}, Direction: {Direction}";
         }
 
         protected bool Equals(Rover other)
         {
-            return X == other.X && Y == other.Y && string.Equals(Direction, other.Direction);
+            return Equals(Position, other.Position) && Equals(Direction, other.Direction);
         }
 
         public override bool Equals(object obj)
@@ -24,68 +34,52 @@ namespace MarsRover
         {
             unchecked
             {
-                var hashCode = X;
-                hashCode = (hashCode * 397) ^ Y;
-                hashCode = (hashCode * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
-                return hashCode;
+                return ((Position != null ? Position.GetHashCode() : 0) * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
             }
         }
 
-        public Rover(int x, int y, Direction direction)
-        {
-            X = x;
-            Y = y;
-            Direction = direction;
-        }
-
-        public int X { get; }
-
-        public int Y { get; }
-
-        public Direction Direction { get; }
-
         public Rover MoveSouth(int limit)
         {
-            var currentY = Y;
+            var currentY = Position.Y;
             if (currentY == -limit)
             {
                 currentY = limit + 1;
             };
 
-            return new Rover(X, currentY - 1, Direction);
+            return new Rover(new Position(Position.X, currentY - 1), Direction);
         }
 
         public Rover MoveWest(int limit)
         {
-            var currentX = X;
+            var currentX = Position.X;
             if (currentX == -limit)
             {
                 currentX = (limit + 1);
             }
 
-            return new Rover(currentX - 1, Y, Direction);
+            return new Rover(new Position(currentX - 1, Position.Y), Direction);
         }
 
         public Rover MoveNorth(int limit)
         {
-            var currentY = Y;
+            var currentY = Position.Y;
             if (currentY == limit)
             {
                 currentY = -(limit + 1);
             }
 
-            return new Rover(X, currentY + 1, Direction);
+            return new Rover(new Position(Position.X, currentY + 1), Direction);
         }
 
         public Rover MoveEast(int limit)
         {
-            var currentX = X;
+            var currentX = Position.X;
             if (currentX == limit)
             {
                 currentX = -(limit + 1);
             }
 
-            return new Rover(currentX + 1, Y, Direction);
+            return new Rover(new Position(currentX + 1, Position.Y), Direction);
         }
     }
 }

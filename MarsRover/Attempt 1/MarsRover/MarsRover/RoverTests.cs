@@ -9,9 +9,9 @@ namespace MarsRover
         [Fact]
         public void MarsRoverPosition()
         {
-            var commandCenter = new RoverCommandCenter(new Rover(5, 3, Direction.South));
+            var commandCenter = new RoverCommandCenter(new Rover(new Position( 5, 3), Direction.South));
 
-            commandCenter.Rover.ShouldBe(new Rover(5, 3, Direction.South));
+            commandCenter.Rover.ShouldBe(new Rover(new Position(5, 3), Direction.South));
         }
 
         [Theory]
@@ -73,22 +73,22 @@ namespace MarsRover
             new List<object[]>
             {
                 // Move forward 1 step when facing north and at the top edge
-                new object[] { new Rover(0, limit, Direction.North), new List<string> {"f"}, new Rover(0, -limit, Direction.North)},
+                new object[] { new Rover(new Position(0, limit), Direction.North), new List<string> {"f"}, new Rover(new Position(0, -limit), Direction.North)},
                 // Move forward 1 step when facing south and at the bottom edge
-                new object[] { new Rover(0, -limit, Direction.South), new List<string> {"f"}, new Rover(0, limit, Direction.South)},
+                new object[] { new Rover(new Position(0, -limit), Direction.South), new List<string> {"f"}, new Rover(new Position(0, limit), Direction.South)},
                 // Move backwards 1 step when facing north and at the bottom edge
-                new object[] { new Rover(0, -limit, Direction.North), new List<string> {"b"}, new Rover(0, limit, Direction.North)},
+                new object[] { new Rover(new Position(0, -limit), Direction.North), new List<string> {"b"}, new Rover(new Position(0, limit), Direction.North)},
                 // Move backwards 1 step when facing south and at the top edge
-                new object[] { new Rover(0, limit, Direction.South), new List<string> {"b"}, new Rover(0, -limit, Direction.South)},
+                new object[] { new Rover(new Position(0, limit), Direction.South), new List<string> {"b"}, new Rover(new Position(0, -limit), Direction.South)},
 
                 // Move forward 1 step when facing east and at the right edge
-                new object[] { new Rover(limit, 0, Direction.East), new List<string> {"f"}, new Rover(-limit, 0, Direction.East)},
+                new object[] { new Rover(new Position(limit, 0), Direction.East), new List<string> {"f"}, new Rover(new Position(-limit, 0), Direction.East)},
                 // Move forward 1 step when facing west and at the left edge
-                new object[] { new Rover(-limit, 0, Direction.West), new List<string> {"f"}, new Rover(limit, 0, Direction.West)},
+                new object[] { new Rover(new Position(-limit, 0), Direction.West), new List<string> {"f"}, new Rover(new Position(limit, 0), Direction.West)},
                 // Move backwards 1 step when facing east and at the left edge
-                new object[] { new Rover(-limit, 0, Direction.East), new List<string> {"b"}, new Rover(limit, 0, Direction.East)},
+                new object[] { new Rover(new Position(-limit, 0), Direction.East), new List<string> {"b"}, new Rover(new Position(limit, 0), Direction.East)},
                 // Move backwards 1 step when facing west and at the right edge
-                new object[] { new Rover(limit, 0, Direction.West), new List<string> {"b"}, new Rover(-limit, 0, Direction.West)},
+                new object[] { new Rover(new Position(limit, 0), Direction.West), new List<string> {"b"}, new Rover(new Position(-limit, 0), Direction.West)},
             };
 
         public static IEnumerable<object[]> CanTurnRightData =>
@@ -124,63 +124,63 @@ namespace MarsRover
             new List<object[]>
             {
                 // Move forward north 1 step
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f"}, new Rover(0, 1, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f"}, new Rover(new Position(0, 1), Direction.North)},
                 // Move forward north 2 steps
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f", "f"}, new Rover(0, 2, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f", "f"}, new Rover(new Position(0, 2), Direction.North)},
                 // Move forward north 3 steps
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f", "f", "f"}, new Rover(0, 3, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"f", "f", "f"}, new Rover(new Position(0, 3), Direction.North)},
                 // Move forward east 1 step
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f"}, new Rover(1, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f"}, new Rover(new Position(1, 0), Direction.East)},
                 // Move forward east 2 steps
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f", "f"}, new Rover(2, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f", "f"}, new Rover(new Position(2, 0), Direction.East)},
                 // Move forward east 3 steps
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f", "f", "f"}, new Rover(3, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"f", "f", "f"}, new Rover(new Position(3, 0), Direction.East)},
                 // Move forward south 1 step
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f"}, new Rover(0, -1, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f"}, new Rover(new Position(0, -1), Direction.South)},
                 // Move forward south 2 steps
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f", "f"}, new Rover(0, -2, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f", "f"}, new Rover(new Position(0, -2), Direction.South)},
                 // Move forward south 3 steps
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f", "f", "f"}, new Rover(0, -3, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"f", "f", "f"}, new Rover(new Position(0, -3), Direction.South)},
                 // Move forward west 1 step
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f"}, new Rover(-1, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f"}, new Rover(new Position(-1, 0), Direction.West)},
                 // Move forward west 2 steps
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f", "f"}, new Rover(-2, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f", "f"}, new Rover(new Position(-2, 0), Direction.West)},
                 // Move forward west 3 steps
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f", "f", "f"}, new Rover(-3, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"f", "f", "f"}, new Rover(new Position(-3, 0), Direction.West)},
             };
 
         public static IEnumerable<object[]> CanMoveBackwardsData =>
             new List<object[]>
             {
                 // Move forward north 1 step
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b"}, new Rover(0, -1, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b"}, new Rover(new Position(0, -1), Direction.North)},
                 // Move forward north 2 steps
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b", "b"}, new Rover(0, -2, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b", "b"}, new Rover(new Position(0, -2), Direction.North)},
                 // Move forward north 3 steps
-                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b", "b", "b"}, new Rover(0, -3, Direction.North)},
+                new object[] {RoverInMiddleFacing(Direction.North), new List<string> {"b", "b", "b"}, new Rover(new Position(0, -3), Direction.North)},
                 // Move forward east 1 step
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b"}, new Rover(-1, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b"}, new Rover(new Position(-1, 0), Direction.East)},
                 // Move forward east 2 steps
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b", "b"}, new Rover(-2, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b", "b"}, new Rover(new Position(-2, 0), Direction.East)},
                 // Move forward east 3 steps
-                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b", "b", "b"}, new Rover(-3, 0, Direction.East)},
+                new object[] {RoverInMiddleFacing(Direction.East), new List<string> {"b", "b", "b"}, new Rover(new Position(-3, 0), Direction.East)},
                 // Move forward south 1 step
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b"}, new Rover(0, 1, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b"}, new Rover(new Position(0, 1), Direction.South)},
                 // Move forward south 2 steps
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b", "b"}, new Rover(0, 2, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b", "b"}, new Rover(new Position(0, 2), Direction.South)},
                 // Move forward south 3 steps
-                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b", "b", "b"}, new Rover(0, 3, Direction.South)},
+                new object[] {RoverInMiddleFacing(Direction.South), new List<string> {"b", "b", "b"}, new Rover(new Position(0, 3), Direction.South)},
                 // Move forward west 1 step
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b"}, new Rover(1, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b"}, new Rover(new Position(1, 0), Direction.West)},
                 // Move forward west 2 steps
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b", "b"}, new Rover(2, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b", "b"}, new Rover(new Position(2, 0), Direction.West)},
                 // Move forward west 3 steps
-                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b", "b", "b"}, new Rover(3, 0, Direction.West)},
+                new object[] {RoverInMiddleFacing(Direction.West), new List<string> {"b", "b", "b"}, new Rover(new Position(3, 0), Direction.West)},
             };
 
         private static Rover RoverInMiddleFacing(Direction direction)
         {
-            return new Rover(0, 0, direction);
+            return new Rover(new Position(0, 0), direction);
         }
     }
 }

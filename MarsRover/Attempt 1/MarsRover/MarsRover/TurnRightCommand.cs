@@ -4,7 +4,7 @@ namespace MarsRover
     {
         public Rover Move(Rover rover, int limit)
         {
-            return new Rover(rover.X, rover.Y, rover.Direction.Right());
+            return new Rover(rover.Position, rover.Direction.Right());
         }
 
         public string CommandPattern => "r";
