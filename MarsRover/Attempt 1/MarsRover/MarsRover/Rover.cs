@@ -1,5 +1,7 @@
 namespace MarsRover
 {
+    using System.Collections.Generic;
+
     public class Rover
     {
         public Rover(int x, int y, string direction)
@@ -15,9 +17,12 @@ namespace MarsRover
 
         public string Direction { get; private set; }
 
-        public void Execute(string command)
+        public void Execute(List<string> commands)
         {
-            Y++;
+            foreach (var command in commands)
+            {
+                Y++;
+            }
         }
     }
 }
