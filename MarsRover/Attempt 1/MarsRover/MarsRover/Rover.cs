@@ -4,24 +4,18 @@ namespace MarsRover
 
     public class Rover
     {
-        public Rover(int x, int y, string direction)
+        public Rover(RoverState roverState)
         {
-            X = x;
-            Y = y;
-            Direction = direction;
+            RoverState = roverState;
         }
 
-        public int X { get; private set; }
-
-        public int Y { get; private set; }
-
-        public string Direction { get; private set; }
+        public RoverState RoverState { get; private set; }
 
         public void Execute(List<string> commands)
         {
             foreach (var command in commands)
             {
-                Y++;
+                RoverState = new RoverState(RoverState.X, RoverState.Y + 1, RoverState.Direction);
             }
         }
     }

@@ -9,32 +9,28 @@ namespace MarsRover
         [Fact]
         public void MarsRoverPosition()
         {
-            var rover = new Rover(5,3, "S");
+            var rover = new Rover(new RoverState(5, 3, "S"));
 
-            rover.X.ShouldBe(5);
-            rover.Y.ShouldBe(3);
-            rover.Direction.ShouldBe("S");
+            rover.RoverState.ShouldBe(new RoverState(5, 3, "S"));
         }
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void MarsRoverCanExecuteCommands(List<string> commands, int expectedY)
+        public void MarsRoverCanExecuteCommands(RoverState initial, List<string> commands, RoverState expected)
         {
-            var rover = new Rover(0, 0, "N");
+            var rover = new Rover(initial);
 
             rover.Execute(commands);
 
-            rover.X.ShouldBe(0);
-            rover.Y.ShouldBe(expectedY);
-            rover.Direction.ShouldBe("N");
+            rover.RoverState.ShouldBe(expected);
         }
 
         public static IEnumerable<object[]> TestData =>
             new List<object[]>
             {
-                new object[] { new List<string> { "f "}, 1  },
-                new object[] { new List<string> { "f ", "f"}, 2  },
-                new object[] { new List<string> { "f ", "f", "f"}, 3  }
+                new object[] { new RoverState(0, 0, "N"),  new List<string> { "f "}, new RoverState(0, 1, "N")   },
+                new object[] { new RoverState(0, 0, "N"),  new List<string> { "f ", "f"}, new RoverState(0, 2, "N")   },
+                new object[] { new RoverState(0, 0, "N"),  new List<string> { "f ", "f", "f"}, new RoverState(0, 3, "N")   },
             };
     }
 }
