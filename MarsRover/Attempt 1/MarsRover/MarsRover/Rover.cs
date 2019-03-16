@@ -13,10 +13,10 @@ namespace MarsRover
 
         public void Execute(List<string> commands)
         {
+            var roverCommandFactory = new RoverCommandFactory();
             foreach (var commandString in commands)
             {
-                var command = new RoverCommandFactory().Build(commandString, RoverState);
-                RoverState = command.Move();
+                RoverState = roverCommandFactory.GetCommand(commandString, RoverState).Move();
             }
         }
     }
