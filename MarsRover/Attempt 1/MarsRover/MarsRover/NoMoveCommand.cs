@@ -2,7 +2,7 @@ namespace MarsRover
 {
     public class NoMoveCommand : IRoverCommand
     {
-        public Rover Move(Rover rover, int limit)
+        public Rover Move(Rover rover, Limit limit)
         {
             return rover;
         }

@@ -12,7 +12,7 @@ namespace MarsRover
             _y = y;
         }
 
-        public Position Forwards(Direction direction, int limit)
+        public Position Forwards(Direction direction, Limit limit)
         {
             if (direction.FacingNorth)
             {
@@ -34,7 +34,7 @@ namespace MarsRover
             return this;
         }
 
-        public Position Backwards(Direction direction, int limit)
+        public Position Backwards(Direction direction, Limit limit)
         {
             if (direction.FacingNorth)
             {
@@ -56,48 +56,32 @@ namespace MarsRover
             return this;
         }
 
-        private Position MoveSouth(int limit)
+        private Position MoveSouth(Limit limit)
         {
-            var currentY = _y;
-            if (currentY == -limit)
-            {
-                currentY = limit + 1;
-            };
+            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_y);
 
-            return new Position(_x, currentY - 1);
+            return new Position(_x, coordinateAdjustedForLimit - 1);
         }
 
-        private Position MoveWest(int limit)
+        private Position MoveWest(Limit limit)
         {
-            var currentX = _x;
-            if (currentX == -limit)
-            {
-                currentX = (limit + 1);
-            }
-
-            return new Position(currentX - 1, _y);
+            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_x);
+            
+            return new Position(coordinateAdjustedForLimit - 1, _y);
         }
 
-        private Position MoveNorth(int limit)
+        private Position MoveNorth(Limit limit)
         {
-            var currentY = _y;
-            if (currentY == limit)
-            {
-                currentY = -(limit + 1);
-            }
+            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_y);
 
-            return new Position(_x, currentY + 1);
+            return new Position(_x, coordinateAdjustedForLimit + 1);
         }
 
-        private Position MoveEast(int limit)
+        private Position MoveEast(Limit limit)
         {
-            var currentX = _x;
-            if (currentX == limit)
-            {
-                currentX = -(limit + 1);
-            }
+            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_x);
 
-            return new Position(currentX + 1, _y);
+            return new Position(coordinateAdjustedForLimit + 1, _y);
         }
 
         public override string ToString()

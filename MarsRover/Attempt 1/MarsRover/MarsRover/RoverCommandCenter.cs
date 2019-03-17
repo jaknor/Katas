@@ -4,7 +4,7 @@ namespace MarsRover
 
     public class RoverCommandCenter
     {
-        private readonly int _limit;
+        private readonly Limit _limit;
         private readonly RoverCommandFactory _roverCommandFactory;
 
         public RoverCommandCenter(Rover rover) : this(rover, int.MaxValue) { }
@@ -12,7 +12,7 @@ namespace MarsRover
         public RoverCommandCenter(Rover rover, int limit)
         {
             Rover = rover;
-            _limit = limit;
+            _limit = new Limit(limit);
             _roverCommandFactory = new RoverCommandFactory();
         }
 
