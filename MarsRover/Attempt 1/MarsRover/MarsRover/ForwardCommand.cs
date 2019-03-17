@@ -2,9 +2,9 @@ namespace MarsRover
 {
     public class ForwardCommand : IRoverCommand
     {
-        public Rover Move(Rover rover, Limit limit, Planet planet)
+        public Rover Move(Rover rover, Planet planet)
         {
-            var nextPosition = rover.Position.Forwards(rover.Direction, limit);
+            var nextPosition = rover.Position.Forwards(rover.Direction, planet);
 
             if (rover.Sensor.CanMoveToTile(planet, nextPosition))
             {

@@ -2,9 +2,9 @@ namespace MarsRover
 {
     public class BackwardCommand : IRoverCommand
     {
-        public Rover Move(Rover rover, Limit limit, Planet planet)
+        public Rover Move(Rover rover, Planet planet)
         {
-            var nextPosition = rover.Position.Backwards(rover.Direction, limit);
+            var nextPosition = rover.Position.Backwards(rover.Direction, planet);
 
             if (rover.Sensor.CanMoveToTile(planet, nextPosition))
             {

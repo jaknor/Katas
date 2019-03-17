@@ -12,74 +12,74 @@ namespace MarsRover
             _y = y;
         }
 
-        public Position Forwards(Direction direction, Limit limit)
+        public Position Forwards(Direction direction, Planet planet)
         {
             if (direction.FacingNorth)
             {
-                return MoveNorth(limit);
+                return MoveNorth(planet);
             }
             else if (direction.FacingEast)
             {
-                return MoveEast(limit);
+                return MoveEast(planet);
             }
             else if (direction.FacingSouth)
             {
-                return MoveSouth(limit);
+                return MoveSouth(planet);
             }
             else if (direction.FacingWest)
             {
-                return MoveWest(limit);
+                return MoveWest(planet);
             }
 
             return this;
         }
 
-        public Position Backwards(Direction direction, Limit limit)
+        public Position Backwards(Direction direction, Planet planet)
         {
             if (direction.FacingNorth)
             {
-                return MoveSouth(limit);
+                return MoveSouth(planet);
             }
             else if (direction.FacingEast)
             {
-                return MoveWest(limit);
+                return MoveWest(planet);
             }
             else if (direction.FacingSouth)
             {
-                return MoveNorth(limit);
+                return MoveNorth(planet);
             }
             else if (direction.FacingWest)
             {
-                return MoveEast(limit);
+                return MoveEast(planet);
             }
 
             return this;
         }
 
-        private Position MoveSouth(Limit limit)
+        private Position MoveSouth(Planet planet)
         {
-            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_y);
+            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_y);
 
             return new Position(_x, coordinateAdjustedForLimit - 1);
         }
 
-        private Position MoveWest(Limit limit)
+        private Position MoveWest(Planet planet)
         {
-            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_x);
+            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_x);
             
             return new Position(coordinateAdjustedForLimit - 1, _y);
         }
 
-        private Position MoveNorth(Limit limit)
+        private Position MoveNorth(Planet planet)
         {
-            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_y);
+            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_y);
 
             return new Position(_x, coordinateAdjustedForLimit + 1);
         }
 
-        private Position MoveEast(Limit limit)
+        private Position MoveEast(Planet planet)
         {
-            var coordinateAdjustedForLimit = limit.AdjustForLimitReached(_x);
+            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_x);
 
             return new Position(coordinateAdjustedForLimit + 1, _y);
         }
