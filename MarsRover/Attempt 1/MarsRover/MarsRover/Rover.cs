@@ -6,11 +6,14 @@ namespace MarsRover
         {
             Position = position;
             Direction = direction;
+            Sensor = new Sensor();
         }
 
         public Position Position { get; }
 
         public Direction Direction { get; }
+
+        public Sensor Sensor { get; }
 
         public override string ToString()
         {
@@ -36,6 +39,11 @@ namespace MarsRover
             {
                 return ((Position != null ? Position.GetHashCode() : 0) * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
             }
+        }
+
+        public string Report()
+        {
+            return $"Moved to {Position}. Facing: {Direction}. Route is {(Sensor.IsStuck() ? "blocked" : "free")}";
         }
     }
 }
