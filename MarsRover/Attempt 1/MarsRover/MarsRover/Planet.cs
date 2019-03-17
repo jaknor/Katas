@@ -1,6 +1,5 @@
 namespace MarsRover
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -20,24 +19,38 @@ namespace MarsRover
             return _blockedPositions.Any(bp => Equals(bp, position)) ? TileStatus.Blocked : TileStatus.Free;
         }
 
-        public int AdjustForLimitReached(int coordinate)
+        public int AdjustForLimit(int coordinate)
         {
-            if (AtTheLimit())
+            if (AboveTopLimit())
             {
-                var coordinateAdjustedForLimit = _limit + 1;
-                return TopLimit() >= 0 ? -coordinateAdjustedForLimit : coordinateAdjustedForLimit;
+                return CoordinateOfBottomLimit();
+            }
+
+            if (BelowBottomLimit())
+            {
+                return CoordinateOfTopLimit();
             }
 
             return coordinate;
 
-            bool AtTheLimit()
+            bool AboveTopLimit()
             {
-                return Math.Abs(coordinate) == _limit;
+                return coordinate > CoordinateOfTopLimit();
             }
 
-            int TopLimit()
+            bool BelowBottomLimit()
             {
-                return Math.Sign(coordinate);
+                return coordinate < CoordinateOfBottomLimit();
+            }
+
+            int CoordinateOfTopLimit()
+            {
+                return _limit;
+            }
+
+            int CoordinateOfBottomLimit()
+            {
+                return -_limit;
             }
         }
     }

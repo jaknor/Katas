@@ -58,30 +58,30 @@ namespace MarsRover
 
         private Position MoveSouth(Planet planet)
         {
-            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_y);
+            var coordinateAdjustedForLimit = planet.AdjustForLimit(_y - 1);
 
-            return new Position(_x, coordinateAdjustedForLimit - 1);
+            return new Position(_x, coordinateAdjustedForLimit);
         }
 
         private Position MoveWest(Planet planet)
         {
-            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_x);
+            var coordinateAdjustedForLimit = planet.AdjustForLimit(_x - 1);
             
-            return new Position(coordinateAdjustedForLimit - 1, _y);
+            return new Position(coordinateAdjustedForLimit, _y);
         }
 
         private Position MoveNorth(Planet planet)
         {
-            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_y);
+            var coordinateAdjustedForLimit = planet.AdjustForLimit(_y + 1);
 
-            return new Position(_x, coordinateAdjustedForLimit + 1);
+            return new Position(_x, coordinateAdjustedForLimit);
         }
 
         private Position MoveEast(Planet planet)
         {
-            var coordinateAdjustedForLimit = planet.AdjustForLimitReached(_x);
+            var coordinateAdjustedForLimit = planet.AdjustForLimit(_x + 1);
 
-            return new Position(coordinateAdjustedForLimit + 1, _y);
+            return new Position(coordinateAdjustedForLimit, _y);
         }
 
         public override string ToString()
