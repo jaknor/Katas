@@ -1,14 +1,15 @@
 namespace MarsRover
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     public class Planet
     {
-        private readonly Limit _limit;
+        private readonly int _limit;
         private readonly List<Position> _blockedPositions;
 
-        public Planet(Limit limit, List<Position> blockedPositions)
+        public Planet(int limit, List<Position> blockedPositions)
         {
             _limit = limit;
             _blockedPositions = blockedPositions;
@@ -21,7 +22,23 @@ namespace MarsRover
 
         public int AdjustForLimitReached(int coordinate)
         {
-            return _limit.AdjustForLimitReached(coordinate);
+            if (AtTheLimit())
+            {
+                var coordinateAdjustedForLimit = _limit + 1;
+                return TopLimit() >= 0 ? -coordinateAdjustedForLimit : coordinateAdjustedForLimit;
+            }
+
+            return coordinate;
+
+            bool AtTheLimit()
+            {
+                return Math.Abs(coordinate) == _limit;
+            }
+
+            int TopLimit()
+            {
+                return Math.Sign(coordinate);
+            }
         }
     }
 }

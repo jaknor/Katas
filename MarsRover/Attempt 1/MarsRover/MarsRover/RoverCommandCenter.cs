@@ -10,7 +10,7 @@ namespace MarsRover
 
         public RoverCommandCenter(Rover rover) : this(rover, Int32.MaxValue) { }
 
-        public RoverCommandCenter(Rover rover, int limit) : this(rover, new Planet(new Limit(limit), new List<Position>())) { }
+        public RoverCommandCenter(Rover rover, int limit) : this(rover, new Planet(limit, new List<Position>())) { }
 
         public RoverCommandCenter(Rover rover, Planet planet)
         {

@@ -83,7 +83,7 @@ namespace MarsRover
         [Fact]
         public void CanContinueAfterStoppingAtObstacle()
         {
-            var commandCenter = new RoverCommandCenter(new Rover(new Position(0, 0), Direction.North), new Planet(new Limit(10), new List<Position> { new Position(0, 1) }));
+            var commandCenter = new RoverCommandCenter(new Rover(new Position(0, 0), Direction.North), new Planet(10, new List<Position> { new Position(0, 1) }));
 
             commandCenter.Execute(new List<string> { "f", "l", "f", "f" });
 
@@ -96,16 +96,16 @@ namespace MarsRover
             new List<object[]>
             {
                 // Move forward 1 step when facing north and there is an obstacle in front of you
-                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"f"}, new Rover(new Position(0, 0), Direction.North), new Planet(new Limit(limit), new List<Position> { new Position(0, 1) })},
+                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"f"}, new Rover(new Position(0, 0), Direction.North), new Planet(limit, new List<Position> { new Position(0, 1) })},
                 // Move backward 1 step when facing north and there is an obstacle behind you
-                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"b"}, new Rover(new Position(0, 0), Direction.North), new Planet(new Limit(limit), new List<Position> { new Position(0, -1) })},
+                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"b"}, new Rover(new Position(0, 0), Direction.North), new Planet(limit, new List<Position> { new Position(0, -1) })},
                 // Move forward 1 step when facing west and there is an obstacle in front of you
-                new object[] { new Rover(new Position(0, 0), Direction.West), new List<string> {"f"}, new Rover(new Position(0, 0), Direction.West), new Planet(new Limit(limit), new List<Position> { new Position(-1, 0) })},
+                new object[] { new Rover(new Position(0, 0), Direction.West), new List<string> {"f"}, new Rover(new Position(0, 0), Direction.West), new Planet(limit, new List<Position> { new Position(-1, 0) })},
                 // Move backward 1 step when facing south and there is an obstacle behind you
-                new object[] { new Rover(new Position(0, 0), Direction.South), new List<string> {"b"}, new Rover(new Position(0, 0), Direction.South), new Planet(new Limit(limit), new List<Position> { new Position(0, 1) })},
+                new object[] { new Rover(new Position(0, 0), Direction.South), new List<string> {"b"}, new Rover(new Position(0, 0), Direction.South), new Planet(limit, new List<Position> { new Position(0, 1) })},
                 
                 // Does not keep moving after encountering obstacle
-                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"f", "l", "f", "f"}, new Rover(new Position(0, 0), Direction.North), new Planet(new Limit(limit), new List<Position> { new Position(0, 1) })},
+                new object[] { new Rover(new Position(0, 0), Direction.North), new List<string> {"f", "l", "f", "f"}, new Rover(new Position(0, 0), Direction.North), new Planet(limit, new List<Position> { new Position(0, 1) })},
 
             };
 
